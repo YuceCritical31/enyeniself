@@ -1,16 +1,14 @@
 const express = require('express');
 const Discord = require('discord.js-selfbot-v13');
-const Discord12 = require("discord.js-selfbot")
 const client = new Discord.Client({checkUpdate: false, patchVoice: true});
 const client2 = new Discord.Client({checkUpdate: false, patchVoice: true});
 const { joinVoiceChannel, entersState, VoiceConnectionStatus } = require('@discordjs/voice');
-const client12 = new Discord12.Client()
 const data = new Map();
 const ayarlar = require('./ayarlar.json');
 const moment = require('moment');
 const fs = require('fs');
 const db = require('quick.db');
-require('./util/eventLoader.js')(client);
+require('./util/etkinlikLoader.js')(client);
 const ms = require('ms');
 const { Client, Util } = require('discord.js-selfbot-v13');
 const app = express()

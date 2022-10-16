@@ -1,10 +1,10 @@
   {
-  "name": "atanis",
+  "name": "Atahan#8888",
   "version": "0.0.1",
-  "description": "atanis.",
-  "main": "atanis.js",
+  "description": "atahan",
+  "main": "atahan.js",
   "scripts": {
-    "start": "node atanis.js"
+    "start": "node atahan.js"
   },
   "dependencies": {
     "@discordjs/opus": "^0.8.0",
