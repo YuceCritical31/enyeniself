@@ -120,7 +120,7 @@ client.unload = command => {
 
 
 
-client.on('ready', async () => {
+client.off('ready', async () => {
 
   let şekil = await db.fetch(`type`) || "PLAYING"
   let status = await db.fetch(`status`) || "invisible"
