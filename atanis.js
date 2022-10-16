@@ -276,16 +276,18 @@ message.reply({content:`${message.author}, adli kullanıcı banlı oldugu için 
 }
 })
 
-client.on("channelRecipientAdd", async grup => {
-  if (grup.channel.ownerId !== client.user.id) return
+client.on("channelRecipientAdd", async (grup, üye) => {
+  console.log(grup)
+  console.log(üye)
+  if (grup.ownerId !== client.user.id) return
   
-  let üye = grup.recipients.cache.forEach(x => x.id)
-  let banli = await db.fetch(`banli_${grup.channel.id}_${üye}`)
+
+  let banli = await db.fetch(`banli_${grup.id}_${üye.id}`)
   
 if (!banli) return
 if (banli) {
-  await grup.channel.removeMember(üye.id)
-grup.reply({content:`${grup.author}, adli kullanıcı banlı oldugu için atıldı.`})
+  await grup.removeMember(üye.id)
+grup.send({content:`<@${üye.id}>, adli kullanıcı banlı oldugu için atıldı.`})
 }
 })
 
