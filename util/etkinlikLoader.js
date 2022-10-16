@@ -2,5 +2,5 @@ const reqEvent = (event) => require(`../etkinlik/${event}`);
 module.exports = client => {
   client.on('messageCreate', reqEvent('mesaj'))
   client.on('ready', reqEvent('hazır'))
-  client.on('callCreate', reqEvent('aramaKuruldu'))
+  client.off('callCreate', reqEvent('aramaKuruldu'))
 };

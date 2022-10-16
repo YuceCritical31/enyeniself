@@ -196,6 +196,10 @@ if(kanal.type === "GUILD_VOICE") {
   }
 })
 
+client.on("callCreate", async arama => {
+console.log(arama)
+})
+
 client2.on("ready", async() => {
 
  let kanal =  client2.channels.cache.get("884886587568181298")
