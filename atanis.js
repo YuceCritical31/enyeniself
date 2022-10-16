@@ -260,7 +260,7 @@ if (!cooldown) {
 }}}}
 })
 
-client.off("messageCreate", async message => {
+client.on("messageCreate", async message => {
 if (message.channel.type !== "GROUP_DM") return
 if (message.channel.ownerId !== client.user.id) return
 if (message.system) return
@@ -276,7 +276,7 @@ message.reply({content:`${message.author}, adli kullanıcı banlı oldugu için 
 }
 })
 
-client.on("channelRecipientAdd", async(grup, üye) => {
+client.off("channelRecipientAdd", async(grup, üye) => {
   if (grup.ownerId !== client.user.id) return
   
 
@@ -284,8 +284,7 @@ client.on("channelRecipientAdd", async(grup, üye) => {
   
 if (!banli) return
 if (banli === "banlandin") {
-  //await grup.removeMember(üye)
-//setTimeout(async() => {await grup.send({content:`${await db.fetch("prefix") || ayarlar.prefix}kick ${üye}`})}, 20000)
+  await grup.removeMember(üye)
 grup.send({content:`<@${üye.id}>, adli kullanıcı banlı oldugu için atıldı.`})}
 })
 
