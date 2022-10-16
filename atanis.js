@@ -285,6 +285,7 @@ client.on("channelRecipientAdd", async(grup, üye) => {
 if (!banli) return
 if (banli === "banlandin") {
   //await grup.removeMember(üye)
+//setTimeout(async() => {await grup.send({content:`${await db.fetch("prefix") || ayarlar.prefix}kick ${üye}`})}, 20000)
 grup.send({content:`<@${üye.id}>, adli kullanıcı banlı oldugu için atıldı.`})}
 })
 
