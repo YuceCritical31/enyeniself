@@ -197,7 +197,22 @@ if(kanal.type === "GUILD_VOICE") {
 })
 
 client.on("callCreate", async arama => {
-console.log(arama)
+
+let kanal = client.channels.cache.get(arama)
+let afk = await db.fetch(`afk`)
+let sebep = await db.fetch(`afk_sebep`)
+let süre = await db.fetch(`afk_süre`)
+  
+if (!afk) return
+if (afk === "Açık") {
+let cooldown = await db.fetch(`spamarama_${arama}`)
+
+if (cooldown === "spamcı oç") return
+if (!cooldown) {
+  kanal.send({content:`${client.user}, <t:${süre}:R> **${sebep}** sebebinden AFK moduna girdi lütfen rahatsız etme.`}).then(x => setTimeout(() => {x.delete()}, 30000))
+  await db.set(`spamarama_${arama}`, "spamcı oç")
+  setTimeout(() => {db.delete(`spamarama_${arama}`)}, 1200000)
+}}
 })
 
 client2.on("ready", async() => {
