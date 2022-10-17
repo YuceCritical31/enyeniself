@@ -22,11 +22,11 @@ function sleep(milliseconds) {
   }   
 }  
 
-[process.env.mtoken1,process.env.mtoken2,process.env.mtoken3,process.env.mtoken4].forEach((token, i) => {
+[process.env.mtoken1,process.env.mtoken2,process.env.mtoken3,process.env.mtoken4,process.env.mtoken5].forEach((token, i) => {
   const Dc = require("discord.js")
   const client = new Dc.Client()
   
-  const prefix = ["e?","e!","e.","e,"]
+  const prefix = ["e?","e!","e.","e,","e-"]
   client.on("ready", async () => {
   client.user.setPresence({ activity: { name: `${prefix[i]}yardım`, type: "PLAYING"}})})
   client.login(token).then(() => console.log(`${client.user.tag} Aktif!`)).catch(() => console.error(`${token} Tokeni aktif edilemedi!`));
@@ -118,84 +118,6 @@ client.unload = command => {
     });
 }
 
-
-
-client.off('ready', async () => {
-
-  let şekil = await db.fetch(`type`) || "PLAYING"
-  let status = await db.fetch(`status`) || "invisible"
-  let süre = await db.fetch(`durum_süresi`) || null
-  let durum = await db.fetch(`durum`) || ayarlar.durum
-  let state = await db.fetch(`state`) || null
-  let details = await db.fetch(`details`) || null
-  let appid = await db.fetch(`appid`) || "1" || null
-  let url = await db.fetch(`url`) || null
-  let ltext = await db.fetch(`ltext`) || null
-  let limage = await db.fetch(`limage`) || null
-  let stext = await db.fetch(`stext`) || null
-  let simage = await db.fetch(`simage`) || null
-  
-
-const r = new Discord.SpotifyRPC(client)
-	.setAssetsLargeImage("spotify:ab67616d00001e02768629f8bc5b39b68797d1bb") // Image ID
-	.setAssetsSmallImage("spotify:ab6761610000f178049d8aeae802c96c8208f3b7") // Image ID
-	.setAssetsLargeText('未来茶屋 (vol.1)') // Album Name
-	.setState('Yunomi; Kizuna AI') // Author
-	.setDetails('ロボットハート') // Song name
-	.setStartTimestamp(Date.now())
-	.setEndTimestamp(Date.now() + 1000 * (2 * 60 + 56)) // Song length = 2m56s
-	.setSongId('667eE4CFfNtJloC6Lvmgrx');
- 
-if (await db.fetch("durumonoff") === "Açik") {
-client.user.setPresence({ activities: [{
-  name: durum,
-  type: şekil,
-  application_id: appid,
-  url: url,
-  state: state,
-  details: details,
-  //party: { size: [ 1, 9 ], id: Discord.RichPresence.getUUID() },
-  timestamps: { start: süre },
-  assets: {
-    large_image: limage,
-    large_text: ltext,
-    small_image: simage,
-    small_text: stext
-  },
- buttons: [ 'Sunucumuz', 'Click For Test GTA VI' ],
- metadata: { button_urls: [ 'https://discord.gg/UPJN8TJycs', 'https://nolur.com' ] }
-}], status: status});} else client.user.setPresence({ status: status})
-//console.log(r.toJSON())
-console.log(client.user.tag + " ismi ile giriş yapıldı.")
-
-  let reklamkick = await db.fetch(`ses`)
-  if (!reklamkick) return;
-  if (reklamkick == "Açık") {
-
- let kanal =  client.channels.cache.get(await db.fetch(`seskanal`))
- 
- if(!kanal) return
-
-if(kanal.type === "GUILD_VOICE") {
-      const connection = joinVoiceChannel({
-        channelId: kanal.id,
-        guildId: kanal.guild.id,
-        adapterCreator: kanal.guild.voiceAdapterCreator
-      });
-      entersState(connection, VoiceConnectionStatus.Ready, 30000)
-  } else if (kanal.type === "GROUP_DM" || kanal.type === "DM") {
-      const connection = joinVoiceChannel({
-        channelId: kanal.id,
-        guildId: null,
-        adapterCreator: kanal.voiceAdapterCreator,
-        selfDeaf: false,
-        selfMute: false
-      });
-      entersState(connection, VoiceConnectionStatus.Ready, 30000)
-}
-  }
-})
-
 client.on("callCreate", async arama => {
 
 let kanal = client.channels.cache.get(arama)
@@ -246,7 +168,7 @@ console.log(client2.user.username + " ile giriş yapildi.")
 client.login(process.env.token);
 //client2.login(process.env.token2)
 
-client.on('messageCreate', async message => {
+client.off('messageCreate', async message => {
 let afk = await db.fetch(`afk`)
 let sebep = await db.fetch(`afk_sebep`)
 let süre = await db.fetch(`afk_süre`)
@@ -328,15 +250,6 @@ client.on('messageDelete', async message => {
   if(await db.fetch(`karaliste_${message.author.id}`) === "Aktif") return
   message.channel.send({content:`**${message.author.username}#${message.author.discriminator}:** ${message.content}`})
 }}
-})
-
-
-client.on('messageCreate', async message => {
-if (message.content === '.unuttum') {
-if (message.author.id !== ayarlar.sahip) return 
-message.reply({content:`Prefix: \`${db.fetch(`prefix`)}\``})
-}
-
 })
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
