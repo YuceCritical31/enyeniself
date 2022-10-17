@@ -1,7 +1,6 @@
 const express = require('express');
 const Discord = require('discord.js-selfbot-v13');
 const client = new Discord.Client({checkUpdate: false, patchVoice: true});
-const client2 = new Discord.Client({checkUpdate: false, patchVoice: true});
 const { joinVoiceChannel, entersState, VoiceConnectionStatus } = require('@discordjs/voice');
 const data = new Map();
 const ayarlar = require('./ayarlar.json');
@@ -12,25 +11,6 @@ require('./util/etkinlikLoader.js')(client);
 const ms = require('ms');
 const { Client, Util } = require('discord.js-selfbot-v13');
 const app = express()
-
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;  
-    }
-  }   
-}  
-
-[process.env.mtoken1,process.env.mtoken2,process.env.mtoken3,process.env.mtoken4,process.env.mtoken5].forEach((token, i) => {
-  const Dc = require("discord.js")
-  const client = new Dc.Client()
-  
-  const prefix = ["e?","e!","e.","e,","e-"]
-  client.on("ready", async () => {
-  client.user.setPresence({ activity: { name: `${prefix[i]}yardım`, type: "PLAYING"}})})
-  client.login(token).then(() => console.log(`${client.user.tag} Aktif!`)).catch(() => console.error(`${token} Tokeni aktif edilemedi!`));
-})
 const http = require('http');
 
 
@@ -118,32 +98,6 @@ client.unload = command => {
     });
 }
 
-client2.on("ready", async() => {
-
- let kanal =  client2.channels.cache.get("884886587568181298")
- 
- if(!kanal) return
-
-if(kanal.type === "GUILD_VOICE" || kanal.type === "GUILD_STAGE_VOICE") {
-      const connection = joinVoiceChannel({
-        channelId: kanal.id,
-        guildId: kanal.guild.id,
-        adapterCreator: kanal.guild.voiceAdapterCreator
-      });
-      entersState(connection, VoiceConnectionStatus.Ready, 30000)
-  } else if (kanal.type === "GROUP_DM" || kanal.type === "DM") {
-      const connection = joinVoiceChannel({
-        channelId: kanal.id,
-        guildId: null,
-        adapterCreator: kanal.voiceAdapterCreator,
-        selfDeaf: false,
-        selfMute: false
-      });
-      entersState(connection, VoiceConnectionStatus.Ready, 30000)
-}
-console.log(client2.user.username + " ile giriş yapildi.")
-})
-
 client.on('messageCreate', async message => {
 if (message.content === '.unuttum') {
 if (message.author.id !== ayarlar.sahip) return 
@@ -153,7 +107,6 @@ message.reply({content:`Prefix: \`${db.fetch(`prefix`)}\``})
 })
 
 client.login(process.env.token);
-//client2.login(process.env.token2)
 
 client.on('messageCreate', async message => {
 let afk = await db.fetch(`afk`)
