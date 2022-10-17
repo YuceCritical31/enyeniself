@@ -2,7 +2,7 @@ const Discord = require('discord.js-selfbot-v13');
 const ayarlar = require('../ayarlar.json');
 const db = require('quick.db')
 
-exports.run = async (client, message, args)=> {
+exports.run = async(client, message, args)=> {
 if(message.author.id === ayarlar.sahip) {
 //Atahan Tarafından Yapılmıştır
 let basarisiz = ayarlar.basarisizemoji;
