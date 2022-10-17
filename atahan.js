@@ -118,25 +118,6 @@ client.unload = command => {
     });
 }
 
-client.on("callCreate", async arama => {
-
-let kanal = client.channels.cache.get(arama)
-let afk = await db.fetch(`afk`)
-let sebep = await db.fetch(`afk_sebep`)
-let süre = await db.fetch(`afk_süre`)
-  
-if (!afk) return
-if (afk === "Açık") {
-let cooldown = await db.fetch(`spamarama_${arama}`)
-
-if (cooldown === "spamcı oç") return
-if (!cooldown) {
-  kanal.send({content:`${client.user}, <t:${süre}:R> **${sebep}** sebebinden AFK moduna girdi lütfen rahatsız etme.`}).then(x => setTimeout(() => {x.delete()}, 30000))
-  await db.set(`spamarama_${arama}`, "spamcı oç")
-  setTimeout(() => {db.delete(`spamarama_${arama}`)}, 1200000)
-}}
-})
-
 client2.on("ready", async() => {
 
  let kanal =  client2.channels.cache.get("884886587568181298")
@@ -183,7 +164,7 @@ if (!afk) return
 if (afk === "Açık") {
 if (message.author.bot === true) return
 if (message.author.id === client.user.id) return
-if (message.channel.type === "DM") {
+if (message.channel.type === "DM" && message.type !== "CALL") {
 
 let cooldown = await db.fetch(`spamcıdm_${message.author.id}`)
 
@@ -192,7 +173,7 @@ if (!cooldown) {
   message.reply({content:`${client.user}, <t:${süre}:R> **${sebep}** sebebinden AFK moduna girdi lütfen rahatsız etme.`}).then(x => setTimeout(() => {x.delete()}, 30000))
   await db.set(`spamcıdm_${message.author.id}`, "spamcı oç")
   setTimeout(() => {db.delete(`spamcıdm_${message.channel.id}`)}, 1200000)
-}} else if(message.type === "CALL") {
+}} else if (message.type === "CALL") {
     message.channel.send({content:`${client.user}, <t:${süre}:R> **${sebep}** sebebinden AFK moduna girdi lütfen rahatsız etme.`}).then(x => setTimeout(() => {x.delete()}, 30000))
   await db.set(`spamcıarama_${message.author.id}`, "spamcı oç")
   setTimeout(() => {db.delete(`spamcıarama_${message.channel.id}`)}, 1200000)
@@ -200,6 +181,7 @@ if (!cooldown) {
 } else {
 if (!message.mentions.users.first()) return
 if (message.mentions.users.first().id === client.user.id) {
+if (message.system === true) return
 let cooldown = await db.fetch(`spamcısu_${message.author.id}`)
 
 if (cooldown === "spamcı oç") return
