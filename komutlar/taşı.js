@@ -12,7 +12,7 @@ if (!message.member.permissions.has("MOVE_MEMBERS")) return message.reply(`${bas
   
   let kanal = message.mentions.channels.first() || message.guild.channels.cache.get(args[1])
   let uye = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-  let uye2 = message.mentions.members.second() || message.guild.members.cache.get(args[1])
+  let uye2 = message.mentions.members.map(x => x)[1] || message.guild.members.cache.get(args[1])
   
   if (!uye) return message.reply(`${basarisiz} ${message.author}, Taşınacak üyeyi belirtmelisin!`).then(x => setTimeout(() => {x.delete()}, 5000));
   if (!args[1]) return message.reply(`${basarisiz} ${message.author}, Üyenin hangi kanala gidiceğini belirtmelisin!`).then(x => setTimeout(() => {x.delete()}, 5000))
