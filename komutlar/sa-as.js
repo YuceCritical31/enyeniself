@@ -29,10 +29,7 @@ return message.reply(`${basarisiz} ${message.author}, Görünüşe göre sa-as s
       await db.set(`sa-as_${message.guild.id}`, "Açık");
 
 
-return message.reply(`${basari} ${message.author}, Sa-as sistemi başarıyla açıldı.`)//.then(msg => {
-    //console.log(`BOT: Yeniden Başlatılıyor.....`);
-    //process.exit(0);
-  //})
+return message.reply(`${basari} ${message.author}, Sa-as sistemi başarıyla açıldı.`).then(x => setTimeout(() => {x.delete()}, 5000));
 message.react('✅')
     }
   } else if (args[0] == "kapat") {
@@ -45,10 +42,7 @@ return message.reply(`${basarisiz} ${message.author}, Görünüşe göre sa-as s
     await db.delete(`sa-as_${message.guild.id}`);
 
 
-return message.reply(`${basari} ${message.author}, Sa-as sistemi başarıyla kapandı.`)//.then(msg => {
-    //console.log(`BOT: Yeniden Başlatılıyor.....`);
-   // process.exit(0);
-  //})
+return message.reply(`${basari} ${message.author}, Sa-as sistemi başarıyla kapandı.`).then(x => setTimeout(() => {x.delete()}, 5000));
 message.react('✅')
   }} else if(message.channel.type === "GROUP_DM") {
   
@@ -70,10 +64,7 @@ return message.reply(`${basarisiz} ${message.author}, Görünüşe göre sa-as s
       await db.set(`sa-as_${message.channel.id}`, "Açık");
 
 
-return message.reply(`${basari} ${message.author}, Sa-as sistemi başarıyla açıldı.`)//.then(msg => {
-    //console.log(`BOT: Yeniden Başlatılıyor.....`);
-    //process.exit(0);
-  //})
+return message.reply(`${basari} ${message.author}, Sa-as sistemi başarıyla açıldı.`).then(x => setTimeout(() => {x.delete()}, 5000));
 message.react('✅')
     }
   } else if (args[0] == "kapat") {
@@ -86,10 +77,7 @@ return message.reply(`${basarisiz} ${message.author}, Görünüşe göre sa-as s
     await db.delete(`sa-as_${message.channel.id}`);
 
 
-return message.reply(`${basari} ${message.author}, Sa-as sistemi başarıyla kapandı.`)//.then(msg => {
-    //console.log(`BOT: Yeniden Başlatılıyor.....`);
-   // process.exit(0);
-  //})
+return message.reply(`${basari} ${message.author}, Sa-as sistemi başarıyla kapandı.`).then(x => setTimeout(() => {x.delete()}, 5000));
 message.react('✅')
   }} else {message.reply(`${basarisiz} ${message.author}, Bu komut sadece sunucuda be gruplarda geçerlidir.`).then(x => setTimeout(() => {x.delete()}, 5000))}
 
