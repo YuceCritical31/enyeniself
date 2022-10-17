@@ -191,8 +191,13 @@ if (cooldown === "spamcı oç") return
 if (!cooldown) {
   message.reply({content:`${client.user}, <t:${süre}:R> **${sebep}** sebebinden AFK moduna girdi lütfen rahatsız etme.`}).then(x => setTimeout(() => {x.delete()}, 30000))
   await db.set(`spamcıdm_${message.author.id}`, "spamcı oç")
-  setTimeout(() => {db.delete(`spamcıdm_${message.author.id}`)}, 1200000)
-}} else {
+  setTimeout(() => {db.delete(`spamcıdm_${message.channel.id}`)}, 1200000)
+}} else if(message.type === "CALL") {
+    message.channel.send({content:`${client.user}, <t:${süre}:R> **${sebep}** sebebinden AFK moduna girdi lütfen rahatsız etme.`}).then(x => setTimeout(() => {x.delete()}, 30000))
+  await db.set(`spamcıarama_${message.author.id}`, "spamcı oç")
+  setTimeout(() => {db.delete(`spamcıarama_${message.channel.id}`)}, 1200000)
+
+} else {
 if (!message.mentions.users.first()) return
 if (message.mentions.users.first().id === client.user.id) {
 let cooldown = await db.fetch(`spamcısu_${message.author.id}`)
