@@ -6,27 +6,20 @@ let basarisiz = ayarlar.basarisizemoji;
 exports.run = async (client, message, args) => {
   
 if (message.author.id === ayarlar.sahip) {
+
+if (!client.password & !process.env.password) return message.reply({content:`${basarisiz} ${message.author}, Lütfen projeye girip şifrenizi belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
+if (!args.join(" ")) return message.reply({content:`${basarisiz} ${message.author}, Yanlış kullanım doğrusu -> **${await db.fetch("prefix") || ayarlar.prefix}isim <isim>** şeklinde yazınız.`}).then(x => setTimeout(() => {x.delete()}, 5000))
+if (args.join(" ") === client.user.username) return message.reply({content:`${basarisiz} ${message.author}, Belirtilen isim önceki ile aynı olamaz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
   
-if (!args[0]) return message.reply({content:`${basarisiz} ${message.author}, Yanlış kullanım doğrusu -> ${ayarlar.prefix}isim <isim> şeklinde yazınız.`}).then(x => setTimeout(() => {x.delete()}, 5000))
-if (!client.password) {
-  try {
- client.user.setUsername(args[0], args[1]).then(() => {
-  message.reply({content:`${basari} ${message.author}, Başarıyla yeni ismin **${args[0]}** olarak ayarlandı.`}).then(x => setTimeout(() => {x.delete()}, 5000))
-message.react('✅')
-})
-} catch {
-  message.reply({content:`${basarisiz} ${message.author}, Şifre kayıtlı değil lütfen ${ayarlar.prefix}isim <isim> <şifre> şeklinde yazınız.`}).then(x => setTimeout(() => {x.delete()}, 5000))
-  }
-} else {
 try {
- client.user.setUsername(args.join(" "), client.password).then(() => {
+ await client.user.setUsername(args.join(" "), client.password || process.env.password).then(() => {
   message.reply({content:`${basari} ${message.author}, Başarıyla yeni ismin **${args.join(" ")}** olarak ayarlandı.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 message.react('✅')
 })
 } catch {message.reply({content:`${basarisiz} ${message.author}, İsmini çok hızlı değişiyosun 1 saat sonra tekrar dene.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 }
 }
-}};
+};
 
 exports.conf = {
   enabled: true,
