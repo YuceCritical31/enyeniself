@@ -196,8 +196,8 @@ if(kanal.type === "GUILD_VOICE") {
   }
 })
 
-client.on("callCreate", async (arama, üye) => {
-console.log(arama + üye)
+client.on("callCreate", async arama => {
+
 let kanal = client.channels.cache.get(arama)
 let afk = await db.fetch(`afk`)
 let sebep = await db.fetch(`afk_sebep`)
