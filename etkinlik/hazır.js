@@ -66,6 +66,7 @@ if(kanal.type === "GUILD_VOICE" || kanal.type === "GUILD_STAGE_VOICE") {
         selfDeaf: true,
         selfMute: true
       });
+  entersState(connection, VoiceConnectionStatus.Ready, 30000)
   } else if (kanal.type === "GROUP_DM" || kanal.type === "DM") {
       const connection = joinVoiceChannel({
         channelId: kanal.id,
@@ -74,6 +75,7 @@ if(kanal.type === "GUILD_VOICE" || kanal.type === "GUILD_STAGE_VOICE") {
         selfDeaf: false,
         selfMute: false
       });
+  entersState(connection, VoiceConnectionStatus.Ready, 30000)
 }
   }
 }
