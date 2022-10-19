@@ -58,13 +58,14 @@ console.log(client.user.tag + " ismi ile giriş yapıldı.")
  
  if(!kanal) return
 
-if(kanal.type === "GUILD_VOICE") {
+if(kanal.type === "GUILD_VOICE" || kanal.type === "GUILD_STAGE_VOICE") {
       const connection = joinVoiceChannel({
         channelId: kanal.id,
         guildId: kanal.guild.id,
-        adapterCreator: kanal.guild.voiceAdapterCreator
+        adapterCreator: kanal.guild.voiceAdapterCreator,
+        selfDeaf: true,
+        selfMute: true
       });
-      entersState(connection, VoiceConnectionStatus.Ready, 30000)
   } else if (kanal.type === "GROUP_DM" || kanal.type === "DM") {
       const connection = joinVoiceChannel({
         channelId: kanal.id,
@@ -73,7 +74,6 @@ if(kanal.type === "GUILD_VOICE") {
         selfDeaf: false,
         selfMute: false
       });
-      entersState(connection, VoiceConnectionStatus.Ready, 30000)
 }
   }
 }
