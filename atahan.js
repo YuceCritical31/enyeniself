@@ -106,7 +106,7 @@ message.reply({content:`Prefix: \`${db.fetch(`prefix`)}\``})
 
 })
 
-client.login(process.env.token).catch(x => console.log("token yanlis girildi"))
+client.login(process.env.token).catch(x => console.log(x))
 
 client.on('messageCreate', async message => {
 let afk = await db.fetch(`afk`)
