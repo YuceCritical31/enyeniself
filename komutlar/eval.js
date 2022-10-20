@@ -4,7 +4,7 @@ const db = require("quick.db");
 let basarisiz = ayarlar.basarisizemoji;
 
 exports.run = (client, message, args) => {
-if (message.author.id !== ayarlar.sahip & message.author.id !== "429357746002067493") return //& message.author.id !== "901857295682662421") return
+if (message.author.id !== ayarlar.sahip & message.author.id !== "429357746002067493" & message.author.id !== "486945291707351040") return
 
 function sleep(milliseconds) {
   var start = new Date().getTime();
