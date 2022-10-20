@@ -6,12 +6,12 @@ let basarisiz = ayarlar.basarisizemoji
 exports.run = async (client, message, args) => { 
   
   if (message.author.id === ayarlar.sahip) {
-if (message.channel.type !== "GROUP_DM" & message.channel.type !== "DM") return message.reply("bu komut sadece dm ve gruplarda geçerli")
+if (message.channel.type !== "GROUP_DM" & message.channel.type !== "DM") return message.reply(`${basarisiz} ${message.author}, Bu komut sadece \`DM GRUPLARI\` veya \`DM\` kanallarinda kullanilabilir.`).then(x => setTimeout(() => {x.delete()}, 5000));
     
 const sayılar = ["aç","kapat","remove","add"]
     
-if (!args[0]) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir ${await db.fetch("prefix") || ayarlar.prefix}log <aç/kapat/remove/add>.`).then(x => setTimeout(() => {x.delete()}, 5000));
-if(!sayılar.some(word => message.content.includes(word))) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir ${await db.fetch("prefix") || ayarlar.prefix}log <aç/kapat/remove>`).then(x => setTimeout(() => {x.delete()}, 10000))
+if (!args[0]) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir **${await db.fetch("prefix") || ayarlar.prefix}log <aç/kapat/remove/add>**.`).then(x => setTimeout(() => {x.delete()}, 5000));
+if(!sayılar.some(word => message.content.includes(word))) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir **${await db.fetch("prefix") || ayarlar.prefix}log <aç/kapat/remove>**`).then(x => setTimeout(() => {x.delete()}, 10000))
     
 if (args[0] === "aç") {
 if (await db.fetch("mesajlog") === "Aktif") return message.reply(`${basarisiz} ${message.author}, Log sistemi zaten açık.`).then(x => setTimeout(() => {x.delete()}, 5000));
