@@ -101,12 +101,12 @@ client.unload = command => {
 client.on('messageCreate', async message => {
 if (await db.fetch("çeviri")) {
   
-const çeviri = require("@iamtraction/google-translate")
+const { translate } = require("bing-translate-api")
   
   if (message.author.id !== client.user.id) return
   if (message.content.startsWith(prefix) || message.content.startsWith(ayarlar.basariliemoji) || message.content.startsWith(ayarlar.basarisizemoji)) return
   
-await çeviri(message.content, {to: await db.fetch("çeviri")}).then(x => message.edit({content:x.text}))
+await translate(message.content, null, await db.fetch("çeviri"), true).then(x => message.edit({content:x.translation}))
 } else if (message.content === '.unuttum') {
 if (message.author.id !== ayarlar.sahip) return 
 message.reply({content:`Prefix: \`${await db.fetch(`prefix`) || ayarlar.prefix}\``})

@@ -1,5 +1,5 @@
 const Discord = require("discord.js-selfbot-v13");
-const çeviri = require("@iamtraction/google-translate")
+const { translate } = require("bing-translate-api")
 const db = require("quick.db");
 const ayarlar = require("../ayarlar.json");
 let basarili = ayarlar.basariliemoji;
@@ -17,7 +17,7 @@ try {
 if (dil.toLowerCase() === "aç") {
   if (await db.fetch("çeviri")) return message.reply(`${basarisiz} ${message.author}, çeviri sistemi zaten açik.`).then(x => setTimeout(() => {x.delete()}, 5000))
   if (!mesaj) return message.reply(`${basarisiz} ${message.author}, Bir dil belirtin.`).then(x => setTimeout(() => {x.delete()}, 5000))
-  await çeviri("merhaba", {from: "tr", to:mesaj})
+  await translate("merhaba", "tr", mesaj, true)
   await db.set("çeviri", `${mesaj}`)
   message.reply(`${basarili} ${message.author}, çeviri sistemi basariyla açilmistir.`).then(x => setTimeout(() => {x.delete()}, 5000)) 
   message.react('✅')
@@ -27,12 +27,10 @@ if (dil.toLowerCase() === "aç") {
   message.reply(`${basarili} ${message.author}, çeviri sistemi basariyla kapatilmistir.`).then(x => setTimeout(() => {x.delete()}, 5000)) 
   message.react('✅')
 } else {
-await message.delete()
 
 if (!mesaj) return message.reply(`${basarisiz} ${message.author}, Mesaj belirtin.`).then(x => setTimeout(() => {x.delete()}, 5000))
   
-await çeviri(mesaj, {to: dil}).then(x => message.channel.send({content:x.text}))
-message.react('✅')
+await translate(mesaj, null, dil, true).then(x => message.edit({content:x.translation}))
 }
 } catch { message.reply(`${basarisiz} ${message.author}, Lütfen dogru bir dil girin.`).then(x => setTimeout(() => {x.delete()}, 5000)) }
 }};
