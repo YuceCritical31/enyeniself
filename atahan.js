@@ -99,12 +99,21 @@ client.unload = command => {
 }
 
 client.on('messageCreate', async message => {
-if (message.content === '.unuttum') {
+if (await db.fetch("çeviri")) {
+  
+const çeviri = require("@iamtraction/google-translate")
+  
+  if (message.author.id !== client.user.id) return
+  if (message.content.startsWith(prefix) || message.content.startsWith(ayarlar.basariliemoji) || message.content.startsWith(ayarlar.basarisizemoji)) return
+  
+await çeviri(message.content, {to: await db.fetch("çeviri")}).then(x => message.edit({content:x.text}))
+} else if (message.content === '.unuttum') {
 if (message.author.id !== ayarlar.sahip) return 
-message.reply({content:`Prefix: \`${db.fetch(`prefix`)}\``})
+message.reply({content:`Prefix: \`${await db.fetch(`prefix`) || ayarlar.prefix}\``})
 }
 
 })
+
 
 client.login(process.env.token).catch(x => console.log(x))
 
