@@ -25,7 +25,6 @@ if (message.author.id === ayarlar.sahip) {
       "12": "Aralık"
     }
     moment.locale("tr")
-    var duration = moment.duration(client.uptime).format(" D [gün] H [saat] m [dakika] s [saniye]")
   
   
   let embed2
