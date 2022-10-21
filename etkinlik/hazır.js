@@ -16,17 +16,6 @@ module.exports = async client => {
   let limage = await db.fetch(`limage`) || null
   let stext = await db.fetch(`stext`) || null
   let simage = await db.fetch(`simage`) || null
-  
-
-const r = new Discord.SpotifyRPC(client)
-	.setAssetsLargeImage("spotify:ab67616d00001e02768629f8bc5b39b68797d1bb") // Image ID
-	.setAssetsSmallImage("spotify:ab6761610000f178049d8aeae802c96c8208f3b7") // Image ID
-	.setAssetsLargeText('未来茶屋 (vol.1)') // Album Name
-	.setState('Yunomi; Kizuna AI') // Author
-	.setDetails('ロボットハート') // Song name
-	.setStartTimestamp(Date.now())
-	.setEndTimestamp(Date.now() + 1000 * (2 * 60 + 56)) // Song length = 2m56s
-	.setSongId('667eE4CFfNtJloC6Lvmgrx');
  
 if (await db.fetch("durumonoff") === "Açik") {
 client.user.setPresence({ activities: [{
