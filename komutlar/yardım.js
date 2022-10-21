@@ -42,7 +42,7 @@ message.reply("||​||||​||||​||||​||||​||||​||||​||||​||||​||||
 }
 }};
 exports.conf = {
-	enabled : true,
+	enabled : false,
 	guildOnly : false,
 	aliases : ['help','yardim'],
 	permLevel : 4
