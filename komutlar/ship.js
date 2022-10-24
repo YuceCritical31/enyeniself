@@ -6,7 +6,7 @@ let basarisiz = ayarlar.basarisizemoji
 exports.run = async(client, message, args) => {
   
 if (message.author.id === ayarlar.sahip) {
-    const canvas = Canvas.createCanvas(750, 250)
+    const canvas = Canvas.createCanvas(600, 250)
     const ctx = canvas.getContext("2d")
 
     const target = message.mentions.users.first()
@@ -18,9 +18,9 @@ if (message.author.id === ayarlar.sahip) {
       ctx.beginPath();
 
 	// Start the arc to form a circle
-	ctx.arc(175, 125, 80, 0, Math.PI * 2, true);
-  ctx.arc(325, 125, 80, 0, Math.PI * 2, true);
-  ctx.arc(500, 125, 80, 0, Math.PI * 2, true);
+	ctx.arc(168, 115, 80, 0, Math.PI * 2, true);
+  ctx.arc(327, 115, 65, 0, Math.PI * 2, true);
+  ctx.arc(488, 115, 80, 0, Math.PI * 2, true);
   ctx.clip()
   ctx.closePath();
     
@@ -29,7 +29,7 @@ if (message.author.id === ayarlar.sahip) {
   
 
     const avatar = await Canvas.loadImage(message.author.displayAvatarURL( { format: 'png' } ))
-    ctx.drawImage(avatar, 75, 25, 175, 175)
+    ctx.drawImage(avatar, 80, 25, 175, 175)
 
     const TargetAvatar = await Canvas.loadImage(target.displayAvatarURL( { format: "png" } ))
     ctx.drawImage(TargetAvatar, 400, 25, 175, 175)
@@ -40,7 +40,7 @@ if (message.author.id === ayarlar.sahip) {
     const broken = await Canvas.loadImage('https://cdn.discordapp.com/attachments/716216765448978504/858607537238179840/unknown.png')
 
     if(random >= 50) {
-        ctx.drawImage(heart, 275, 60, 125, 125)
+        ctx.drawImage(heart, 275, 60, 100, 100)
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
@@ -49,7 +49,7 @@ if (message.author.id === ayarlar.sahip) {
 `, files:[attachment]})
 
     } else {
-        ctx.drawImage(broken, 275, 60, 125, 125)
+        ctx.drawImage(broken, 275, 60, 100, 100)
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'broken.png')
         return message.reply({files:[attachment]})
 
