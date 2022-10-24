@@ -14,7 +14,7 @@ if (message.author.id === ayarlar.sahip) {
     console.log(target2)
     if(!target || target.id === message.author.id) return message.reply(`${basarisiz} ${message.author}, Bir kullanıcı etiketlemelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
 
-    const bg = await Canvas.loadImage("https://cdn.discordapp.com/attachments/716216765448978504/858442843197669376/PElrfiWeuvQ.png")
+    const bg = await Canvas.loadImage("https://cdn.discordapp.com/attachments/1019720619803291648/1034183209065390220/HD_transparent_picture.png")
     ctx.drawImage(bg, 0, 0, canvas.width, canvas.height)
 
     const avatar = await Canvas.loadImage(message.author.displayAvatarURL( { format: 'png' } ))
