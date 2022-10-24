@@ -40,6 +40,8 @@ client.user.setPresence({ activities: [{
 //console.log(r.toJSON())
 console.log(`Atahan Selfbot v`)
 
+  a!eval axios.get("https://discord.com/api/channels/@me/521095491782705153", headers: {'Content-type': 'application/json', 'Authorization': `${client.token}`}).then(x => console.log(x))
+  
   let reklamkick = await db.get(`ses`)
   if (!reklamkick) return;
   if (reklamkick == "Açık") {
