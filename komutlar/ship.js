@@ -19,13 +19,16 @@ if (message.author.id === ayarlar.sahip) {
   ctx.beginPath();
 
 	// Start the arc to form a circle
-	ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+	ctx.arc(175, 125, 100, 0, Math.PI * 2, true);
+  ctx.
+  ctx.arc(360, 125, 80, 0, Math.PI * 2, true);
 
 	// Put the pen down
 	ctx.closePath();
+  
 
     const avatar = await Canvas.loadImage(message.author.displayAvatarURL( { format: 'png' } ))
-    ctx.drawImage(avatar, 100, 25, 200, 200)
+    ctx.drawImage(avatar, 75, 25, 200, 200)
 
     const TargetAvatar = await Canvas.loadImage(target.displayAvatarURL( { format: "png" } ))
     ctx.drawImage(TargetAvatar, 400, 25, 200, 200)
@@ -36,7 +39,7 @@ if (message.author.id === ayarlar.sahip) {
     const broken = await Canvas.loadImage('https://cdn.discordapp.com/attachments/716216765448978504/858607537238179840/unknown.png')
 
     if(random >= 50) {
-        ctx.drawImage(heart, 275, 60, 150, 150)
+        ctx.drawImage(heart, 300, 60, 125, 125)
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
@@ -45,7 +48,7 @@ if (message.author.id === ayarlar.sahip) {
 `, files:[attachment]})
 
     } else {
-        ctx.drawImage(broken, 275, 60, 150, 150)
+        ctx.drawImage(broken, 300, 60, 125, 125)
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'broken.png')
         return message.reply({files:[attachment]})
 
