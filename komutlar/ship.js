@@ -6,10 +6,11 @@ let basarisiz = ayarlar.basarisizemoji
 exports.run = async(client, message, args) => {
   
 if (message.author.id === ayarlar.sahip) {
-    const canvas = Canvas.createCanvas(700, 250)
+    const canvas = Canvas.createCanvas(700, 275)
     const ctx = canvas.getContext("2d")
 
     const target = message.mentions.users.first()
+    const target2 = message.mentions.users.first(1)
     if(!target || target.id === message.author.id) return message.reply(`${basarisiz} ${message.author}, Bir kullanıcı etiketlemelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
 
     const bg = await Canvas.loadImage("https://cdn.discordapp.com/attachments/716216765448978504/858442843197669376/PElrfiWeuvQ.png")
@@ -36,19 +37,19 @@ if (message.author.id === ayarlar.sahip) {
     if(random >= 50) {
         ctx.drawImage(heart, 275, 60, 150, 150)
 
-        ctx.font = '40px Impact'
-        ctx.fillText(`${random}%`, 300, 100, 200, 200)
+        ctx.font = '35px Impact'
+        ctx.fillText(`${random}%`, 330, 150, 200, 200)
 
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
-        return message.reply({content:`${message.author.username} + ${target.username} = ${random}%`, files:[attachment]})
+        return message.reply({files:[attachment]})
 
     } else {
         ctx.drawImage(broken, 275, 60, 150, 150)
       
-        ctx.font = '40px Impact'
-        ctx.fillText(`${random}%`, 300, 240, 300, 300)
+        ctx.font = '35px Impact'
+        ctx.fillText(`${random}%`, 330, 150, 200, 200)
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'broken.png')
-        return message.reply({content:`${message.author.username} + ${target.username} = ${random}%`, files:[attachment]})
+        return message.reply({files:[attachment]})
 
     }
   
