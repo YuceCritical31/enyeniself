@@ -10,7 +10,8 @@ if (message.author.id === ayarlar.sahip) {
     const ctx = canvas.getContext("2d")
 
     const target = message.mentions.users.first()
-    const target2 = message.mentions.users.first()[1]
+    const target2 = message.mentions.users.map(x => x)[1]
+    console.log(target2)
     if(!target || target.id === message.author.id) return message.reply(`${basarisiz} ${message.author}, Bir kullanıcı etiketlemelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
 
     const bg = await Canvas.loadImage("https://cdn.discordapp.com/attachments/1033078714432503858/1034217917786632262/unknown.png")
@@ -28,20 +29,106 @@ if (message.author.id === ayarlar.sahip) {
   
     const random = Math.floor(Math.random() * 99) + 1
 
-    if(random <= 10) {
+    if(random < 10) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
 :small_red_triangle_down:*\`${message.author.username}\`*
 :small_red_triangle:*\`${target.username}\`*
-**${random}%** :heart: :black_heart: :black_heart: :black_heart: :black_heart:
+**${random}%** :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart:
 `, files:[attachment]})
 
-    } else {
-        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'broken.png')
-        return message.reply({files:[attachment]})
+    } else if(random >= 10 && random < 20) {
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
+        return message.reply({content:`
+:heartpulse: **EŞLEŞME** :heartpulse:
+:small_red_triangle_down:*\`${message.author.username}\`*
+:small_red_triangle:*\`${target.username}\`*
+**${random}%** :heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart:
+`, files:[attachment]})
 
-    }
+} else if(random >= 20 && random < 30) {
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
+        return message.reply({content:`
+:heartpulse: **EŞLEŞME** :heartpulse:
+:small_red_triangle_down:*\`${message.author.username}\`*
+:small_red_triangle:*\`${target.username}\`*
+**${random}%** :heart: :heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart:
+`, files:[attachment]})
+
+} else if(random >= 30 && random < 40) {
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
+        return message.reply({content:`
+:heartpulse: **EŞLEŞME** :heartpulse:
+:small_red_triangle_down:*\`${message.author.username}\`*
+:small_red_triangle:*\`${target.username}\`*
+**${random}%** :heart: :heart: :heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: 
+`, files:[attachment]})
+
+} else if(random >= 40 && random < 50) {
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
+        return message.reply({content:`
+:heartpulse: **EŞLEŞME** :heartpulse:
+:small_red_triangle_down:*\`${message.author.username}\`*
+:small_red_triangle:*\`${target.username}\`*
+**${random}%** :heart: :heart: :heart: :heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart:
+`, files:[attachment]})
+
+} else if(random >= 50 && random < 60) {
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
+        return message.reply({content:`
+:heartpulse: **EŞLEŞME** :heartpulse:
+:small_red_triangle_down:*\`${message.author.username}\`*
+:small_red_triangle:*\`${target.username}\`*
+**${random}%** :heart: :heart: :heart: :heart: :heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart:
+`, files:[attachment]})
+
+} else if(random >= 60 && random < 70) {
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
+        return message.reply({content:`
+:heartpulse: **EŞLEŞME** :heartpulse:
+:small_red_triangle_down:*\`${message.author.username}\`*
+:small_red_triangle:*\`${target.username}\`*
+**${random}%** :heart: :heart: :heart: :heart: :heart: :heart: :black_heart: :black_heart: :black_heart: :black_heart:
+`, files:[attachment]})
+
+} else if(random >= 70 && random < 80) {
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
+        return message.reply({content:`
+:heartpulse: **EŞLEŞME** :heartpulse:
+:small_red_triangle_down:*\`${message.author.username}\`*
+:small_red_triangle:*\`${target.username}\`*
+**${random}%** :heart: :heart: :heart: :heart: :heart: :heart: :heart: :black_heart: :black_heart: :black_heart:
+`, files:[attachment]})
+
+} else if(random >= 80 && random < 90) {
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
+        return message.reply({content:`
+:heartpulse: **EŞLEŞME** :heartpulse:
+:small_red_triangle_down:*\`${message.author.username}\`*
+:small_red_triangle:*\`${target.username}\`*
+**${random}%** :heart: :heart: :heart: :heart: :heart: :heart: :heart: :heart: :black_heart: :black_heart:
+`, files:[attachment]})
+
+} else if(random >= 90 && random < 99) {
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
+        return message.reply({content:`
+:heartpulse: **EŞLEŞME** :heartpulse:
+:small_red_triangle_down:*\`${message.author.username}\`*
+:small_red_triangle:*\`${target.username}\`*
+**${random}%** :heart: :heart: :heart: :heart: :heart: :heart: :heart: :heart: :black_heart:
+`, files:[attachment]})
+
+} else if(random >= 99) {
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
+        return message.reply({content:`
+:heartpulse: **EŞLEŞME** :heartpulse:
+:small_red_triangle_down:*\`${message.author.username}\`*
+:small_red_triangle:*\`${target.username}\`*
+**${random}%** :heart: :heart: :heart: :heart: :heart: :heart: :heart: :heart: :heart:
+`, files:[attachment]})
+
+}
   
   
 }};
