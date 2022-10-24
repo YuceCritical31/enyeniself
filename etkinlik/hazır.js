@@ -38,7 +38,7 @@ client.user.setPresence({ activities: [{
  metadata: { button_urls: [ 'https://discord.gg/UPJN8TJycs', 'https://nolur.com' ] }
 }], status: status});} else client.user.setPresence({ status: status})
 //console.log(r.toJSON())
-console.log(client.user.tag + " ismi ile giriş yapıldı.")
+console.log(`Atahan Selfbot v`)
 
   let reklamkick = await db.get(`ses`)
   if (!reklamkick) return;
