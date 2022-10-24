@@ -11,7 +11,10 @@ if (message.author.id === ayarlar.sahip) {
 
     const target = message.mentions.users.first()
     const target2 = message.mentions.users.map(x => x)[1]
-    console.log(target2)
+
+    let target3
+    if (target2) {target3 = target2} else {target3 = message.author}
+    
     if(!target || target.id === message.author.id) return message.reply(`${basarisiz} ${message.author}, Bir kullanıcı etiketlemelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
 
     const bg = await Canvas.loadImage("https://cdn.discordapp.com/attachments/1033078714432503858/1034217917786632262/unknown.png")
@@ -20,12 +23,10 @@ if (message.author.id === ayarlar.sahip) {
     ctx.drawImage(bg, 0, 0, canvas.width, canvas.height)
 
   
-
-    const avatar = await Canvas.loadImage(message.author.displayAvatarURL( { format: 'png' } ))
-    ctx.drawImage(avatar, 25, 100, 125, 125)
-
     const TargetAvatar = await Canvas.loadImage(target.displayAvatarURL( { format: "png" } ))
-    ctx.drawImage(TargetAvatar, 450, 100, 125, 125)
+    const avatar = await Canvas.loadImage(target3.displayAvatarURL( { format: 'png' } ))
+    ctx.drawImage(TargetAvatar, 25, 100, 125, 125)
+    ctx.drawImage(avatar, 450, 100, 125, 125)
   
     const random = Math.floor(Math.random() * 99) + 1
 
@@ -33,8 +34,8 @@ if (message.author.id === ayarlar.sahip) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
-:small_red_triangle_down:*\`${message.author.username}\`*
-:small_red_triangle:*\`${target.username}\`*
+:small_red_triangle_down:${target3}
+:small_red_triangle:${target}
 **${random}%** :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart:
 `, files:[attachment]})
 
@@ -42,8 +43,8 @@ if (message.author.id === ayarlar.sahip) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
-:small_red_triangle_down:*\`${message.author.username}\`*
-:small_red_triangle:*\`${target.username}\`*
+:small_red_triangle_down:${target3}
+:small_red_triangle:${target}
 **${random}%** :heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart:
 `, files:[attachment]})
 
@@ -51,8 +52,8 @@ if (message.author.id === ayarlar.sahip) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
-:small_red_triangle_down:*\`${message.author.username}\`*
-:small_red_triangle:*\`${target.username}\`*
+:small_red_triangle_down:${target3}
+:small_red_triangle:${target}
 **${random}%** :heart: :heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart:
 `, files:[attachment]})
 
@@ -60,8 +61,8 @@ if (message.author.id === ayarlar.sahip) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
-:small_red_triangle_down:*\`${message.author.username}\`*
-:small_red_triangle:*\`${target.username}\`*
+:small_red_triangle_down:${target3}
+:small_red_triangle:${target}
 **${random}%** :heart: :heart: :heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: 
 `, files:[attachment]})
 
@@ -69,8 +70,8 @@ if (message.author.id === ayarlar.sahip) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
-:small_red_triangle_down:*\`${message.author.username}\`*
-:small_red_triangle:*\`${target.username}\`*
+:small_red_triangle_down:${target3}
+:small_red_triangle:${target}
 **${random}%** :heart: :heart: :heart: :heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart:
 `, files:[attachment]})
 
@@ -78,8 +79,8 @@ if (message.author.id === ayarlar.sahip) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
-:small_red_triangle_down:*\`${message.author.username}\`*
-:small_red_triangle:*\`${target.username}\`*
+:small_red_triangle_down:${target3}
+:small_red_triangle:${target}
 **${random}%** :heart: :heart: :heart: :heart: :heart: :black_heart: :black_heart: :black_heart: :black_heart: :black_heart:
 `, files:[attachment]})
 
@@ -87,8 +88,8 @@ if (message.author.id === ayarlar.sahip) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
-:small_red_triangle_down:*\`${message.author.username}\`*
-:small_red_triangle:*\`${target.username}\`*
+:small_red_triangle_down:${target3}
+:small_red_triangle:${target}
 **${random}%** :heart: :heart: :heart: :heart: :heart: :heart: :black_heart: :black_heart: :black_heart: :black_heart:
 `, files:[attachment]})
 
@@ -96,8 +97,8 @@ if (message.author.id === ayarlar.sahip) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
-:small_red_triangle_down:*\`${message.author.username}\`*
-:small_red_triangle:*\`${target.username}\`*
+:small_red_triangle_down:${target3}
+:small_red_triangle:${target}
 **${random}%** :heart: :heart: :heart: :heart: :heart: :heart: :heart: :black_heart: :black_heart: :black_heart:
 `, files:[attachment]})
 
@@ -105,8 +106,8 @@ if (message.author.id === ayarlar.sahip) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
-:small_red_triangle_down:*\`${message.author.username}\`*
-:small_red_triangle:*\`${target.username}\`*
+:small_red_triangle_down:${target3}
+:small_red_triangle:${target}
 **${random}%** :heart: :heart: :heart: :heart: :heart: :heart: :heart: :heart: :black_heart: :black_heart:
 `, files:[attachment]})
 
@@ -114,8 +115,8 @@ if (message.author.id === ayarlar.sahip) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
-:small_red_triangle_down:*\`${message.author.username}\`*
-:small_red_triangle:*\`${target.username}\`*
+:small_red_triangle_down:${target3}
+:small_red_triangle:${target}
 **${random}%** :heart: :heart: :heart: :heart: :heart: :heart: :heart: :heart: :black_heart:
 `, files:[attachment]})
 
@@ -123,8 +124,8 @@ if (message.author.id === ayarlar.sahip) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
-:small_red_triangle_down:*\`${message.author.username}\`*
-:small_red_triangle:*\`${target.username}\`*
+:small_red_triangle_down:${target3}
+:small_red_triangle:${target}
 **${random}%** :heart: :heart: :heart: :heart: :heart: :heart: :heart: :heart: :heart:
 `, files:[attachment]})
 
