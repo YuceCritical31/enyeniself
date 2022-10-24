@@ -4,8 +4,12 @@ const db = new QuickDB()
 const ayarlar = require("../ayarlar.json")
 const { joinVoiceChannel, entersState, VoiceConnectionStatus } = require('@discordjs/voice');
 const figlet = require("figlet")
+const chalk = require("chalk")
 
 module.exports = async client => {
+  
+  let prefix = await db.get("prefix") || ayarlar.prefix
+  
   let şekil = await db.get(`type`) || "PLAYING"
   let status = await db.get(`status`) || "invisible"
   let süre = await db.get(`durum_süresi`) || null
@@ -39,13 +43,26 @@ client.user.setPresence({ activities: [{
  metadata: { button_urls: [ 'https://discord.gg/UPJN8TJycs', 'https://nolur.com' ] }
 }], status: status});} else client.user.setPresence({ status: status})
 //console.log(r.toJSON())
-figlet("Atahan Selfbot v1", function(err, data) {
+/*figlet("Atahan Selfbot v1", function(err, data) {
     if (err) {
         console.log(`Atahan Selfbot v1: ${client.user.tag} ile giriş yapıldı.`);
     } else {
     console.log(data)
     console.log(`${client.user.tag} ile giriş yapıldı.`)}
-});
+});*/
+let copyright = `( Extacy Selfbot v${ayarlar.SÜRÜM} )`;
+console.clear()
+console.log(chalk.cyan(`                   
+                      ███████╗██╗  ██╗████████╗ █████╗  █████╗ ██╗   ██╗
+                      ██╔════╝╚██╗██╔╝╚══██╔══╝██╔══██╗██╔══██╗╚██╗ ██╔╝
+                      █████╗   ╚███╔╝    ██║   ███████║██║  ╚═╝ ╚████╔╝ 
+                      ██╔══╝   ██╔██╗    ██║   ██╔══██║██║  ██╗  ╚██╔╝  
+                      ███████╗██╔╝╚██╗   ██║   ██║  ██║╚█████╔╝   ██║   
+                      ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚════╝    ╚═╝   
+`))
+console.log(chalk.cyan(`—————————————————————————————————————${copyright}—————————————————————————————————————`));
+console.log(chalk.green("[BILGI]") + ` ${client.user.tag} ile giriş yapıldı.`)
+console.log(chalk.green("[BILGI]") + ` Artık komutları ${prefix} ile kullanabilirsiniz!`)
 
   let reklamkick = await db.get(`ses`)
   if (!reklamkick) return;

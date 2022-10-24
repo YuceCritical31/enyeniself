@@ -2,6 +2,7 @@ const Discord = require('discord.js-selfbot-v13');
 const ayarlar = require('../ayarlar.json');
 const { QuickDB } = require('quick.db');
 const db = new QuickDB()
+const chalk = require("chalk")
 let basarisiz = ayarlar.basarisizemoji;
 module.exports = async message => {
 
@@ -22,5 +23,7 @@ module.exports = async message => {
   if (cmd) {
     //if(cmd.conf.enabled === false) return message.channel.send("⛔ Kullandığın komut **Bakıma Alınmış** veya **Kullanıma Kapatılmıştır!**")
     cmd.run(client, message, params);
+    if (message.author.id === ayarlar.sahip) {
+    console.log(chalk.cyan("[KOMUT]") + ` ${cmd.help.name}`)}
   }
 };
