@@ -21,19 +21,20 @@ if (message.author.id === ayarlar.sahip) {
   
 
     const avatar = await Canvas.loadImage(message.author.displayAvatarURL( { format: 'png' } ))
-    ctx.drawImage(avatar, 25, 25, 125, 125)
+    ctx.drawImage(avatar, 25, 100, 125, 125)
 
     const TargetAvatar = await Canvas.loadImage(target.displayAvatarURL( { format: "png" } ))
-    ctx.drawImage(TargetAvatar, 575, 25, 125, 125)
+    ctx.drawImage(TargetAvatar, 450, 100, 125, 125)
   
     const random = Math.floor(Math.random() * 99) + 1
 
-    if(random >= 50) {
+    if(random <= 10) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
 :small_red_triangle_down:*\`${message.author.username}\`*
 :small_red_triangle:*\`${target.username}\`*
+**${random}%** :heart: :black_heart: :black_heart: :black_heart: :black_heart:
 `, files:[attachment]})
 
     } else {
