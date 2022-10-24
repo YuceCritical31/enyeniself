@@ -13,34 +13,22 @@ if (message.author.id === ayarlar.sahip) {
     const target2 = message.mentions.users.first()[1]
     if(!target || target.id === message.author.id) return message.reply(`${basarisiz} ${message.author}, Bir kullanıcı etiketlemelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
 
-    const bg = await Canvas.loadImage("https://cdn.discordapp.com/attachments/1019720619803291648/1034183209065390220/HD_transparent_picture.png")
+    const bg = await Canvas.loadImage("https://cdn.discordapp.com/attachments/1033078714432503858/1034217917786632262/unknown.png")
     
-      ctx.beginPath();
-
-	// Start the arc to form a circle
-	ctx.arc(168, 115, 80, 0, Math.PI * 2, true);
-  ctx.arc(327, 115, 65, 0, Math.PI * 2, true);
-  ctx.arc(488, 115, 80, 0, Math.PI * 2, true);
-  ctx.clip()
-  ctx.closePath();
     
     ctx.drawImage(bg, 0, 0, canvas.width, canvas.height)
 
   
 
     const avatar = await Canvas.loadImage(message.author.displayAvatarURL( { format: 'png' } ))
-    ctx.drawImage(avatar, 80, 25, 175, 175)
+    ctx.drawImage(avatar, 25, 25, 125, 125)
 
     const TargetAvatar = await Canvas.loadImage(target.displayAvatarURL( { format: "png" } ))
-    ctx.drawImage(TargetAvatar, 400, 25, 175, 175)
+    ctx.drawImage(TargetAvatar, 575, 25, 125, 125)
   
     const random = Math.floor(Math.random() * 99) + 1
 
-    const heart = await Canvas.loadImage('https://cdn.discordapp.com/attachments/716216765448978504/858607217728159744/unknown.png')
-    const broken = await Canvas.loadImage('https://cdn.discordapp.com/attachments/716216765448978504/858607537238179840/unknown.png')
-
     if(random >= 50) {
-        ctx.drawImage(heart, 275, 60, 100, 100)
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
@@ -49,7 +37,6 @@ if (message.author.id === ayarlar.sahip) {
 `, files:[attachment]})
 
     } else {
-        ctx.drawImage(broken, 275, 60, 100, 100)
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'broken.png')
         return message.reply({files:[attachment]})
 
