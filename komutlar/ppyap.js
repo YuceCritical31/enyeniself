@@ -50,5 +50,5 @@ message.react('✅')
 exports.help = {
   name: 'ppyap',
   description: '',
-  usage: 'avatar [@kullanıcı]'
+  usage: 'a [@kullanıcı]'
 };

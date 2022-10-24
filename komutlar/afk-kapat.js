@@ -23,6 +23,6 @@ exports.conf = {
 
 exports.help = {
   name: "unafk",
-  description: "Afk Olmanızı Sağlar.",
-  usage: "afk / afk <sebep>"
+  description: "Afk'dan Çıkmanızı Sağlar.",
+  usage: "unafk"
 };

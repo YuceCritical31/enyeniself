@@ -38,6 +38,6 @@ exports.conf = {
 
 exports.help = {
   name: 'git',
-  description: "Etiketlenen kişinin tüm rollerini alıp jail'e atar.",
-  usage: '.jail @etiket Sebep'
+  description: "Etiketlenen Kişinin Olduğu Ses Odasına Gider.",
+  usage: '.git <etiket> '
 }

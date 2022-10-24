@@ -71,6 +71,6 @@ exports.conf = {
 
 exports.help = {
   name: "grup",
-  description: "Afk Olmanızı Sağlar.",
-  usage: "afk / afk <sebep>"
+  description: "Grubu Silebilir Devredebilir Gruptan Çıkabilir Gruba Birini Ekleyebilir Gruptan Banladığınız Kişinin Banını Açabilirsiniz.",
+  usage: "grup <sil/devret/leave/ekle/unban>"
 };

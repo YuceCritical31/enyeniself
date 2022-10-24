@@ -53,5 +53,5 @@ message.react('✅')
 exports.help = {
   name: 'banneryap',
   description: '',
-  usage: 'avatar [@kullanıcı]'
+  usage: 'banneryap [@kullanıcı]'
 };

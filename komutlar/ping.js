@@ -23,6 +23,6 @@ exports.conf = {
 
 exports.help = {
   name: "ping",
-  description: "Bot",
-  usage: "reklam-engel"
+  description: "Botun Pingine Bakar.",
+  usage: "ping"
 };

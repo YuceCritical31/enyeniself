@@ -26,6 +26,6 @@ exports.conf = {
 
 exports.help = {
   name: "emoji",
-  description: "Afk Olmanızı Sağlar.",
-  usage: "afk / afk <sebep>"
+  description: "Nitro Olmadan Emoji Atmanızı Sağlar.",
+  usage: "emoji <emojiadı>"
 };

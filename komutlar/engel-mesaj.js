@@ -37,6 +37,6 @@ exports.conf = {
 
 exports.help = {
   name: "e-mesaj",
-  description: "Afk Olmanızı Sağlar.",
-  usage: "afk / afk <sebep>"
+  description: "Engel Attığınız Kişinin Engelini Açıp Mesaj Atıp Geri Engel Atar.",
+  usage: "e-mesaj <mesaj>"
 };

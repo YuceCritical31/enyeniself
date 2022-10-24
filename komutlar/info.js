@@ -94,5 +94,5 @@ message.react('✅')
 exports.help = {
   name: 'info',
   description: '',
-  usage: 'avatar [@kullanıcı]'
+  usage: 'info <etiket/kullanıcıid/sunucuid>'
 };
