@@ -21,9 +21,11 @@ if (message.author.id === ayarlar.sahip) {
     const TargetAvatar = await Canvas.loadImage(target.displayAvatarURL( { format: "png" } ))
     ctx.drawImage(TargetAvatar, 400, 25, 200, 200)
 
-    ctx.fillText(message.author.username, 178, 240, 300, 300)
+    ctx.font = '30px Impact'
+    ctx.fillText(message.author.username, 140, 240, 300, 300)
 
-    ctx.fillText(target.username, 483, 240, 300, 300)
+    ctx.font = '30px Impact'
+    ctx.fillText(target.username, 480, 240, 300, 300)
 
 
     const heart = await Canvas.loadImage('https://cdn.discordapp.com/attachments/716216765448978504/858607217728159744/unknown.png')
