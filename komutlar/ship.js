@@ -6,7 +6,7 @@ let basarisiz = ayarlar.basarisizemoji
 exports.run = async(client, message, args) => {
   
 if (message.author.id === ayarlar.sahip) {
-    const canvas = Canvas.createCanvas(292, 128)
+    const canvas = Canvas.createCanvas(750, 250)
     const ctx = canvas.getContext("2d")
 
     const target = message.mentions.users.first()
@@ -15,12 +15,20 @@ if (message.author.id === ayarlar.sahip) {
 
     const bg = await Canvas.loadImage("https://cdn.discordapp.com/attachments/1019720619803291648/1034183209065390220/HD_transparent_picture.png")
     ctx.drawImage(bg, 0, 0, canvas.width, canvas.height)
+  
+  ctx.beginPath();
+
+	// Start the arc to form a circle
+	ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
+
+	// Put the pen down
+	ctx.closePath();
 
     const avatar = await Canvas.loadImage(message.author.displayAvatarURL( { format: 'png' } ))
-    ctx.drawImage(avatar, 100, 25, 100, 100)
+    ctx.drawImage(avatar, 100, 25, 200, 200)
 
     const TargetAvatar = await Canvas.loadImage(target.displayAvatarURL( { format: "png" } ))
-    ctx.drawImage(TargetAvatar, 400, 25, 100, 100)
+    ctx.drawImage(TargetAvatar, 400, 25, 200, 200)
   
     const random = Math.floor(Math.random() * 99) + 1
 
