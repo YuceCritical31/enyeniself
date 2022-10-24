@@ -2,6 +2,7 @@ const Discord = require('discord.js-selfbot-v13');
 const ayarlar = require('../ayarlar.json');
 const { QuickDB } = require('quick.db');
 const db = new QuickDB()
+const axios = require("axios")
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 let basarisiz = ayarlar.basarisizemoji;
 
