@@ -6,22 +6,21 @@ let basarisiz = ayarlar.basarisizemoji
 exports.run = async(client, message, args) => {
   
 if (message.author.id === ayarlar.sahip) {
-    const canvas = Canvas.createCanvas(700, 275)
+    const canvas = Canvas.createCanvas(292, 128)
     const ctx = canvas.getContext("2d")
 
     const target = message.mentions.users.first()
     const target2 = message.mentions.users.first()[1]
-    console.log(target2)
     if(!target || target.id === message.author.id) return message.reply(`${basarisiz} ${message.author}, Bir kullanıcı etiketlemelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
 
     const bg = await Canvas.loadImage("https://cdn.discordapp.com/attachments/1019720619803291648/1034183209065390220/HD_transparent_picture.png")
     ctx.drawImage(bg, 0, 0, canvas.width, canvas.height)
 
     const avatar = await Canvas.loadImage(message.author.displayAvatarURL( { format: 'png' } ))
-    ctx.drawImage(avatar, 100, 25, 200, 200)
+    ctx.drawImage(avatar, 100, 25, 100, 100)
 
     const TargetAvatar = await Canvas.loadImage(target.displayAvatarURL( { format: "png" } ))
-    ctx.drawImage(TargetAvatar, 400, 25, 200, 200)
+    ctx.drawImage(TargetAvatar, 400, 25, 100, 100)
   
     const random = Math.floor(Math.random() * 99) + 1
 
