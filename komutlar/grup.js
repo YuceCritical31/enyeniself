@@ -9,17 +9,10 @@ exports.run = async (client, message, args) => {
   if (message.author.id === ayarlar.sahip) {
 if (message.channel.type !== "GROUP_DM") return message.reply(`${basarisiz} ${message.author}, Bu komut sadece \`DM GRUPLARI\` kanalinda kullanilabilir.`).then(x => setTimeout(() => {x.delete()}, 5000));
     
-const sayılar = ["sil","devret","leave","ekle","unban"]
+const sayılar = ["devret","leave","ekle","unban"]
     
 if (!args[0]) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir **${await db.get("prefix") || ayarlar.prefix}grup <sil/devret/ekle/unban/leave>**`).then(x => setTimeout(() => {x.delete()}, 5000));
 if(!sayılar.some(word => message.content.includes(word))) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir **${await db.get("prefix") || ayarlar.prefix}grup <sil/devret/ekle/unban/leave>**`).then(x => setTimeout(() => {x.delete()}, 10000))
-     
-if (args[0] === "sil") {
-if (message.channel.owner.id !== client.user.id) return message.reply(`${ayarlar.basarisizemoji} ${message.author}, Grup lideri siz deilsiniz.`).then(x => setTimeout(() => {x.delete()}, 5000))
-await message.channel.recipients.forEach(x => message.channel.removeMember(x.id))
-await message.channel.delete()
-message.react('✅')
-}
     
 if (args[0] === "devret") {
 if (message.channel.owner.id !== client.user.id) return message.reply(`${ayarlar.basarisizemoji} ${message.author}, Grup lideri siz deilsiniz.`).then(x => setTimeout(() => {x.delete()}, 5000))
@@ -71,6 +64,6 @@ exports.conf = {
 
 exports.help = {
   name: "grup",
-  description: "Grubu Silebilir Devredebilir Gruptan Çıkabilir Gruba Birini Ekleyebilir Gruptan Banladığınız Kişinin Banını Açabilirsiniz.",
-  usage: "grup <sil/devret/leave/ekle/unban>"
+  description: "Grubu Devredebilir Gruptan Çıkabilir Gruba Birini Ekleyebilir Gruptan Banladığınız Kişinin Banını Açabilirsiniz.",
+  usage: "grup </devret/leave/ekle/unban>"
 };

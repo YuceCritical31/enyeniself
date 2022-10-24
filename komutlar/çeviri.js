@@ -44,7 +44,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: "trasnlate",
-  description: "Afk Olmanızı Sağlar.",
-  usage: "afk / afk <sebep>"
+  name: "çeviri",
+  description: "",
+  usage: "çeviri <aç/kapat/dil çevirilcek kelime>"
 };

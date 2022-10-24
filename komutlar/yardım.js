@@ -56,5 +56,5 @@ exports.conf = {
 exports.help = {
 	name : 'yardım',
 	description : 'Komut kategorilerini atar',
-	usage : '!yardım'
+	usage : 'yardım'
 }

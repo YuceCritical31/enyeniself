@@ -58,6 +58,6 @@ exports.conf = {
 
 exports.help = {
   name: "log",
-  description: "Afk Olmanızı Sağlar.",
-  usage: "afk / afk <sebep>"
+  description: "Silinen Veya Düzenlenen Mesajın Logunu Atar.",
+  usage: "log <aç/kapat/remove/add>"
 };

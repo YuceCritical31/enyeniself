@@ -29,6 +29,6 @@ exports.conf = {
 
 exports.help = {
   name: 'çek',
-  description: "Etiketlenen kişinin tüm rollerini alıp jail'e atar.",
-  usage: '.jail @etiket Sebep'
+  description: "Etiketlenen Kişiyi Olduğunuz Ses Kanalına Çeker.",
+  usage: 'çek <etiket>'
 }

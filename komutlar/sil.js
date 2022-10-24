@@ -26,6 +26,6 @@ exports.conf = {
 
 exports.help = {
   name: 'sil',
-  description: 'spammer',
-  usage: 'spam [yazdırmak istediğiniz şey]'
+  description: 'En Fazla 100 Mesaj Olmak Üzere Mesajlarınızı Siler.',
+  usage: 'sil <1 ve 100 arası sayı>'
 };

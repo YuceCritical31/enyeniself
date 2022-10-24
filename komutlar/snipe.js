@@ -50,6 +50,6 @@ exports.conf = {
 }
 exports.help = {
   name: "snipe",
-  description: 'Son silinen mesajı yakalar.',
+  description: 'Son Silinen Mesajı Yakalar.',
   usage: 'snipe'
 } 

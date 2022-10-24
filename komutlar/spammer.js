@@ -30,5 +30,5 @@ exports.conf = {
 exports.help = {
   name: 'spam',
   description: 'spammer',
-  usage: 'spam [yazdırmak istediğiniz şey]'
+  usage: 'spam <yazdırmak istediğiniz şey>'
 };

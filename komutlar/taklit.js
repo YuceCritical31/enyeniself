@@ -62,6 +62,6 @@ exports.conf = {
 
 exports.help = {
   name: "taklit",
-  description: "Bot",
-  usage: "reklam-engel"
+  description: "",
+  usage: "taklit <aç/kapat>"
 };

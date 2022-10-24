@@ -91,6 +91,6 @@ exports.conf = {
 
 exports.help = {
   name: "sa-as",
-  description: "Bot",
-  usage: "reklam-engel"
+  description: "Sa-As Komutunu Açıp Kapatabilirsiniz.",
+  usage: "sa-as <aç/kapat>"
 };

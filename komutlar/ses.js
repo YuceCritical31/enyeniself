@@ -60,6 +60,6 @@ exports.conf = {
 
 exports.help = {
   name: "ses",
-  description: "Bot",
-  usage: "reklam-engel"
+  description: "Ayarlanan Ses Kanalına Girmenizi Sağlar.",
+  usage: "ses <aç/kapat>"
 };

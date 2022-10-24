@@ -40,6 +40,6 @@ exports.conf = {
 
 exports.help = {
   name: 'taşı',
-  description: "Etiketlenen kişinin tüm rollerini alıp jail'e atar.",
-  usage: '.jail @etiket Sebep'
+  description: "Etiketlenen Kişiyi Etiketlenen Kanala Atar.",
+  usage: 'taşı <kanal>'
 }

@@ -28,6 +28,6 @@ exports.conf = {
 
 exports.help = {
   name: "sik",
-  description: "Afk Olmanızı Sağlar.",
-  usage: "afk / afk <sebep>"
+  description: "Bir Kullanıcıyı Siker.",
+  usage: "sik <etiket>"
 };
