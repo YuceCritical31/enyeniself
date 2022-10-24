@@ -3,6 +3,7 @@ const { QuickDB } = require('quick.db');
 const db = new QuickDB()
 const ayarlar = require("../ayarlar.json")
 const { joinVoiceChannel, entersState, VoiceConnectionStatus } = require('@discordjs/voice');
+const figlet = require("figlet")
 
 module.exports = async client => {
   let şekil = await db.get(`type`) || "PLAYING"
@@ -38,7 +39,13 @@ client.user.setPresence({ activities: [{
  metadata: { button_urls: [ 'https://discord.gg/UPJN8TJycs', 'https://nolur.com' ] }
 }], status: status});} else client.user.setPresence({ status: status})
 //console.log(r.toJSON())
-console.log(`Atahan Selfbot v`)
+figlet("Atahan Selfbot v1", function(err, data) {
+    if (err) {
+        console.log(`Atahan Selfbot v1: ${client.user.tag} ile giriş yapıldı.`);
+    } else {
+    console.log(data)
+    console.log(`${client.user.tag} ile giriş yapıldı.`)}
+});
 
   let reklamkick = await db.get(`ses`)
   if (!reklamkick) return;
