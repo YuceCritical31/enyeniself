@@ -31,7 +31,11 @@ if (message.author.id === ayarlar.sahip) {
     if(random >= 50) {
         ctx.drawImage(heart, 275, 60, 150, 150)
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
-        return message.reply({files:[attachment]})
+        return message.reply({content:`
+:heartpulse: **EŞLEŞİYOR** :heartpulse:
+:small_red_triangle_down:*\`${message.author.tag}\`*
+:small_red_triangle:*\`${target.tag}\`*
+`, files:[attachment]})
 
     } else {
         ctx.drawImage(broken, 275, 60, 150, 150)
