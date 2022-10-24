@@ -32,9 +32,9 @@ if (message.author.id === ayarlar.sahip) {
         ctx.drawImage(heart, 275, 60, 150, 150)
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`
-:heartpulse: **EŞLEŞİYOR** :heartpulse:
-:small_red_triangle_down:*\`${message.author.tag}\`*
-:small_red_triangle:*\`${target.tag}\`*
+:heartpulse: **EŞLEŞME** :heartpulse:
+:small_red_triangle_down:*\`${message.author.username}\`*
+:small_red_triangle:*\`${target.username}\`*
 `, files:[attachment]})
 
     } else {
