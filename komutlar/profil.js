@@ -1,5 +1,6 @@
 const Discord = require('discord.js-selfbot');
-const db = require('quick.db')
+const { QuickDB } = require('quick.db');
+const db = new QuickDB()
 const moment = require('moment');
 const ayarlar = require('../ayarlar.json')
 

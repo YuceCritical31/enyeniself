@@ -6,7 +6,8 @@ const data = new Map();
 const ayarlar = require('./ayarlar.json');
 const moment = require('moment');
 const fs = require('fs');
-const db = require('quick.db');
+const { QuickDB } = require('quick.db');
+const db = new QuickDB()
 require('./util/etkinlikLoader.js')(client);
 const ms = require('ms');
 const { Client, Util } = require('discord.js-selfbot-v13');

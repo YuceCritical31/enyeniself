@@ -1,6 +1,7 @@
 const Discord = require("discord.js-selfbot-v13");
 const { translate } = require("bing-translate-api")
-const db = require("quick.db");
+const { QuickDB } = require('quick.db');
+const db = new QuickDB()
 const ayarlar = require("../ayarlar.json");
 let basarili = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji

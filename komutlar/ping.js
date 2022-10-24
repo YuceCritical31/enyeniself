@@ -1,4 +1,5 @@
-const db = require("quick.db");
+const { QuickDB } = require('quick.db');
+const db = new QuickDB()
 const Discord = require("discord.js-selfbot-v13");
 const ayarlar = require("../ayarlar.json");
 let prefix = ayarlar.prefix;
