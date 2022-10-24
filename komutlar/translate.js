@@ -16,14 +16,14 @@ if (!dil) return message.reply(`${basarisiz} ${message.author}, Bir dil belirtin
 
 try {  
 if (dil.toLowerCase() === "aç") {
-  if (await db.fetch("çeviri")) return message.reply(`${basarisiz} ${message.author}, Çeviri sistemi zaten açık.`).then(x => setTimeout(() => {x.delete()}, 5000))
+  if (await db.get("çeviri")) return message.reply(`${basarisiz} ${message.author}, Çeviri sistemi zaten açık.`).then(x => setTimeout(() => {x.delete()}, 5000))
   if (!mesaj) return message.reply(`${basarisiz} ${message.author}, Bir dil belirtin.`).then(x => setTimeout(() => {x.delete()}, 5000))
   await translate("merhaba", "tr", mesaj, true)
   await db.set("çeviri", `${mesaj}`)
   message.reply(`${basarili} ${message.author}, Çeviri sistemi basariyla açilmistir.`).then(x => setTimeout(() => {x.delete()}, 5000)) 
   message.react('✅')
 } else if (dil.toLowerCase() === "kapat") {
-  if (!await db.fetch("çeviri")) return message.reply(`${basarisiz} ${message.author}, Çeviri sistemi zaten kapalı.`).then(x => setTimeout(() => {x.delete()}, 5000))
+  if (!await db.get("çeviri")) return message.reply(`${basarisiz} ${message.author}, Çeviri sistemi zaten kapalı.`).then(x => setTimeout(() => {x.delete()}, 5000))
   await db.delete("çeviri")
   message.reply(`${basarili} ${message.author}, Çeviri sistemi başarıyla kapatılmıştır.`).then(x => setTimeout(() => {x.delete()}, 5000)) 
   message.react('✅')

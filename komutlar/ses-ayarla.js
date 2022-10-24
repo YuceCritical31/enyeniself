@@ -8,8 +8,8 @@ exports.run = async (client, message, args) => {
   
 if (message.author.id === ayarlar.sahip) {
 
-let data = await db.fetch(`ses`);
-let data2 = await db.fetch(`seskanal`)
+let data = await db.get(`ses`);
+let data2 = await db.get(`seskanal`)
 
 if (message.channel.type === "DM" && !args[0] || message.channel.type === "GROUP_DM" && !args[0] || message.channel.type === "GUILD_VOICE" && !args[0]) {
 

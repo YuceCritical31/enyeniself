@@ -1,5 +1,6 @@
 const { PermissionsBitField } = require('discord.js-selfbot-v13');
-const data = require('quick.db')
+const { QuickDB } = require('quick.db');
+const data = new QuickDB()
 const ayarlar = require("../ayarlar.json");
 
 exports.run = async (client, message, args) => {

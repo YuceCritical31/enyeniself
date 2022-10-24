@@ -19,7 +19,7 @@ return message.reply(`${basarisiz} ${message.author}, Doğru bir argüman gir A�
 
     return;
   }
-let kufur = await db.fetch(`sa-as_${message.guild.id}`);
+let kufur = await db.get(`sa-as_${message.guild.id}`);
 if (args[0] == "aç" || args[0] == "ac") {
 if (kufur) {
 
@@ -54,7 +54,7 @@ return message.reply(`${basarisiz} ${message.author}, Doğru bir argüman gir A�
 
     return;
   }
-let kufur = await db.fetch(`sa-as_${message.channel.id}`);
+let kufur = await db.get(`sa-as_${message.channel.id}`);
 if (args[0] == "aç" || args[0] == "ac") {
 if (kufur) {
 

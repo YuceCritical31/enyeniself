@@ -8,7 +8,7 @@ exports.run = async(client, message, args) => {
   
   if (message.author.id === ayarlar.sahip) {
 
-    let prefix = await db.fetch(`prefix`) || ayarlar.prefix
+    let prefix = await db.get(`prefix`) || ayarlar.prefix
     let basarili = ayarlar.basariliemoji;
     let basarisiz = ayarlar.basarisizemoji;
 

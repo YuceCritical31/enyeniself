@@ -17,7 +17,7 @@ return message.reply(`${basarisiz} ${message.author}, Doğru bir argüman gir A�
 
     return;
   }
-let kufur = await db.fetch(`taklit`);
+let kufur = await db.get(`taklit`);
 if (args[0] == "aç" || args[0] == "ac") {
 if (kufur) {
 

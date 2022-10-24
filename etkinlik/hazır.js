@@ -1,23 +1,24 @@
 const Discord = require("discord.js-selfbot-v13")
-const db = require("quick.db")
+const { QuickDB } = require('quick.db');
+const db = new QuickDB()
 const ayarlar = require("../ayarlar.json")
 const { joinVoiceChannel, entersState, VoiceConnectionStatus } = require('@discordjs/voice');
 
 module.exports = async client => {
-  let şekil = await db.fetch(`type`) || "PLAYING"
-  let status = await db.fetch(`status`) || "invisible"
-  let süre = await db.fetch(`durum_süresi`) || null
-  let durum = await db.fetch(`durum`) || ayarlar.durum
-  let state = await db.fetch(`state`) || null
-  let details = await db.fetch(`details`) || null
-  let appid = await db.fetch(`appid`) || "1" || null
-  let url = await db.fetch(`url`) || null
-  let ltext = await db.fetch(`ltext`) || null
-  let limage = await db.fetch(`limage`) || null
-  let stext = await db.fetch(`stext`) || null
-  let simage = await db.fetch(`simage`) || null
+  let şekil = await db.get(`type`) || "PLAYING"
+  let status = await db.get(`status`) || "invisible"
+  let süre = await db.get(`durum_süresi`) || null
+  let durum = await db.get(`durum`) || ayarlar.durum
+  let state = await db.get(`state`) || null
+  let details = await db.get(`details`) || null
+  let appid = await db.get(`appid`) || "1" || null
+  let url = await db.get(`url`) || null
+  let ltext = await db.get(`ltext`) || null
+  let limage = await db.get(`limage`) || null
+  let stext = await db.get(`stext`) || null
+  let simage = await db.get(`simage`) || null
  
-if (await db.fetch("durumonoff") === "Açik") {
+if (await db.get("durumonoff") === "Açik") {
 client.user.setPresence({ activities: [{
   name: durum,
   type: şekil,
@@ -39,11 +40,11 @@ client.user.setPresence({ activities: [{
 //console.log(r.toJSON())
 console.log(client.user.tag + " ismi ile giriş yapıldı.")
 
-  let reklamkick = await db.fetch(`ses`)
+  let reklamkick = await db.get(`ses`)
   if (!reklamkick) return;
   if (reklamkick == "Açık") {
 
- let kanal =  client.channels.cache.get(await db.fetch(`seskanal`))
+ let kanal =  client.channels.cache.get(await db.get(`seskanal`))
  
  if(!kanal) return
 

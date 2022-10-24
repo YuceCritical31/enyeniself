@@ -1,12 +1,13 @@
 const { MessageEmbed } = require("discord.js-selfbot-v13");
-const db = require("quick.db");
+const { QuickDB } = require('quick.db');
+const db = new QuickDB()
 const ayarlar = require("../ayarlar.json");
 let basarili = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji
 exports.run = async (client, message, args) => {
   
   if (message.author.id === ayarlar.sahip) {
-  if (db.fetch(`afk`) === "Açık") return message.reply(`${basarisiz} ${message.author}, Görünüşe göre afk modu zaten açık.`).then(x => setTimeout(() => {x.delete()}, 5000));
+  if (db.get(`afk`) === "Açık") return message.reply(`${basarisiz} ${message.author}, Görünüşe göre afk modu zaten açık.`).then(x => setTimeout(() => {x.delete()}, 5000));
 let sebep = args.slice(0).join(' ');
 if (!sebep) return message.reply(`${basarisiz} ${message.author}, Bir sebep belirtmelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
   

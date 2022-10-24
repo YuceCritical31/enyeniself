@@ -1,13 +1,14 @@
 const Discord = require('discord.js-selfbot-v13');
 const ayarlar = require('../ayarlar.json');
-const db = require("quick.db");
+const { QuickDB } = require('quick.db');
+const db = new QuickDB()
 let basarisiz = ayarlar.basarisizemoji;
 module.exports = async message => {
 
   let client = message.client
 
   
-  let prefix = await db.fetch(`prefix`) || ayarlar.prefix
+  let prefix = await db.get(`prefix`) || ayarlar.prefix
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
   let command = message.content.split(" ")[0].slice(prefix.length);

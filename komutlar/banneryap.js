@@ -1,6 +1,7 @@
 const Discord = require('discord.js-selfbot-v13');
 const ayarlar = require('../ayarlar.json');
-const db = require('quick.db')
+const { QuickDB } = require('quick.db');
+const db = new QuickDB()
 
 exports.run = async (client, message, args)=> {
 if(message.author.id === ayarlar.sahip) {

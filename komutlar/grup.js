@@ -1,5 +1,6 @@
 const Discord = require("discord.js-selfbot-v13");
-const db = require("quick.db");
+const { QuickDB } = require('quick.db');
+const db = new QuickDB()
 const ayarlar = require("../ayarlar.json");
 let basarili = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji
@@ -10,8 +11,8 @@ if (message.channel.type !== "GROUP_DM") return message.reply(`${basarisiz} ${me
     
 const sayılar = ["sil","devret","leave","ekle","unban"]
     
-if (!args[0]) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir **${await db.fetch("prefix") || ayarlar.prefix}grup <sil/devret/ekle/unban/leave>**`).then(x => setTimeout(() => {x.delete()}, 5000));
-if(!sayılar.some(word => message.content.includes(word))) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir **${await db.fetch("prefix") || ayarlar.prefix}grup <sil/devret/ekle/unban/leave>**`).then(x => setTimeout(() => {x.delete()}, 10000))
+if (!args[0]) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir **${await db.get("prefix") || ayarlar.prefix}grup <sil/devret/ekle/unban/leave>**`).then(x => setTimeout(() => {x.delete()}, 5000));
+if(!sayılar.some(word => message.content.includes(word))) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir **${await db.get("prefix") || ayarlar.prefix}grup <sil/devret/ekle/unban/leave>**`).then(x => setTimeout(() => {x.delete()}, 10000))
      
 if (args[0] === "sil") {
 if (message.channel.owner.id !== client.user.id) return message.reply(`${ayarlar.basarisizemoji} ${message.author}, Grup lideri siz deilsiniz.`).then(x => setTimeout(() => {x.delete()}, 5000))

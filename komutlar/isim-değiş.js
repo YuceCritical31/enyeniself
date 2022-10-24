@@ -1,5 +1,6 @@
 const Discord = require("discord.js-selfbot-v13");
-const db = require("quick.db");
+const { QuickDB } = require('quick.db');
+const db = new QuickDB()
 const ayarlar = require("../ayarlar.json");
 let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji;
@@ -8,7 +9,7 @@ exports.run = async (client, message, args) => {
 if (message.author.id === ayarlar.sahip) {
 
 if (!client.password & !process.env.password) return message.reply({content:`${basarisiz} ${message.author}, Lütfen projeye girip şifrenizi belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
-if (!args.join(" ")) return message.reply({content:`${basarisiz} ${message.author}, Yanlış kullanım doğrusu -> **${await db.fetch("prefix") || ayarlar.prefix}isim <isim>** şeklinde yazınız.`}).then(x => setTimeout(() => {x.delete()}, 5000))
+if (!args.join(" ")) return message.reply({content:`${basarisiz} ${message.author}, Yanlış kullanım doğrusu -> **${await db.get("prefix") || ayarlar.prefix}isim <isim>** şeklinde yazınız.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 if (args.join(" ") === client.user.username) return message.reply({content:`${basarisiz} ${message.author}, Belirtilen isim önceki ile aynı olamaz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
   
 try {

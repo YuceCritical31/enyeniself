@@ -1,5 +1,6 @@
 const Discord = require("discord.js-selfbot-v13");
-const db = require("quick.db");
+const { QuickDB } = require('quick.db');
+const db = new QuickDB()
 const ayarlar = require("../ayarlar.json");
 let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji;
@@ -8,10 +9,10 @@ exports.run = async (client, message, args) => {
 if (message.author.id === ayarlar.sahip) {
   
   const sayılar = ["name","state","type","details","url","assets","appid","sifirla","ayarla","kapat","aç"]
-  if(!sayılar.some(word => message.content.includes(word)) || !args[0]) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir ${await db.fetch("prefix") || ayarlar.prefix}durum <name/state/type/details/url/assets/appid/sifirla/ayarla/aç/kapat>`).then(x => setTimeout(() => {x.delete()}, 10000))
+  if(!sayılar.some(word => message.content.includes(word)) || !args[0]) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir ${await db.get("prefix") || ayarlar.prefix}durum <name/state/type/details/url/assets/appid/sifirla/ayarla/aç/kapat>`).then(x => setTimeout(() => {x.delete()}, 10000))
   
 if (args[0].toLowerCase() === "name") {  
-let data = await db.fetch(`durum`)
+let data = await db.get(`durum`)
 let durum = args.splice(1).join(" ")
 if(!durum) return message.reply({content:`${basarisiz} ${message.author}, Lütfen durumunuzu belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 if (data === durum) return message.reply(`${basarisiz} ${message.author}, Durumunuz önceki ile aynı olamaz.`).then(x => setTimeout(() => {x.delete()}, 5000))
@@ -23,7 +24,7 @@ message.react('✅')
 }
 
 if (args[0].toLowerCase() === "state") {  
-let data = await db.fetch(`state`)
+let data = await db.get(`state`)
 let durum = args.splice(1).join(" ")
 if(!durum) return message.reply({content:`${basarisiz} ${message.author}, Lütfen state belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 if (data === durum) return message.reply(`${basarisiz} ${message.author}, State önceki ile aynı olamaz.`).then(x => setTimeout(() => {x.delete()}, 5000))
@@ -35,7 +36,7 @@ message.react('✅')
 }
   
 if (args[0].toLowerCase() === "details") {  
-let data = await db.fetch(`details`)
+let data = await db.get(`details`)
 let durum = args.splice(1).join(" ")
 if(!durum) return message.reply({content:`${basarisiz} ${message.author}, Lütfen details belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 if (data === durum) return message.reply(`${basarisiz} ${message.author}, Details önceki ile aynı olamaz.`).then(x => setTimeout(() => {x.delete()}, 5000))
@@ -47,7 +48,7 @@ message.react('✅')
 }
   
 if (args[0].toLowerCase() === "url") {  
-let data = await db.fetch(`url`)
+let data = await db.get(`url`)
 let durum = args.splice(1).join(" ")
 if (!durum.startsWith("http")) return message.reply({content:`${basarisiz} ${message.author}, Lütfen url belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 if(!durum) return message.reply({content:`${basarisiz} ${message.author}, Lütfen url belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
@@ -62,10 +63,10 @@ message.react('✅')
 if (args[0].toLowerCase() === "assets") {
  
   const sayılar = ["limage","simage","stext","ltext"]
-  if(!sayılar.some(word => message.content.includes(word))) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir ${await db.fetch("prefix") || ayarlar.prefix}assets <limage/ltext/simage/stext>`).then(x => setTimeout(() => {x.delete()}, 10000))
+  if(!sayılar.some(word => message.content.includes(word))) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir ${await db.get("prefix") || ayarlar.prefix}assets <limage/ltext/simage/stext>`).then(x => setTimeout(() => {x.delete()}, 10000))
   
 if (args[1].toLowerCase() === "limage") {
-let data = await db.fetch(`limage`)
+let data = await db.get(`limage`)
 let durum = args.splice(2).join(" ")
 if (!durum.startsWith("http")) return message.reply({content:`${basarisiz} ${message.author}, Lütfen large image i link olarak belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 if(!durum) return message.reply({content:`${basarisiz} ${message.author}, Lütfen large image belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
@@ -82,7 +83,7 @@ message.reply({content:`${basari} ${message.author}, Large image \`${durum}\` ol
 await db.set(`limage`, durum)
 message.react('✅')
 } else if (args[1].toLowerCase() === "simage") {
-let data = await db.fetch(`simage`)
+let data = await db.get(`simage`)
 let durum = args.splice(2).join(" ")
 if (!durum.startsWith("http")) return message.reply({content:`${basarisiz} ${message.author}, Lütfen small image i link olarak belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 if(!durum) return message.reply({content:`${basarisiz} ${message.author}, Lütfen small image belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
@@ -99,7 +100,7 @@ message.reply({content:`${basari} ${message.author}, Small image \`${durum}\` ol
 await db.set(`simage`, durum)
 message.react('✅')
 } else if (args[1].toLowerCase() === "ltext") {
-let data = await db.fetch(`ltext`)
+let data = await db.get(`ltext`)
 let durum = args.splice(2).join(" ")
 if(!durum) return message.reply({content:`${basarisiz} ${message.author}, Lütfen large text belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 if (data === durum) return message.reply(`${basarisiz} ${message.author}, Large text önceki ile aynı olamaz.`).then(x => setTimeout(() => {x.delete()}, 5000))
@@ -109,7 +110,7 @@ message.reply({content:`${basari} ${message.author}, Large text \`${durum}\` ola
 await db.set(`ltext`, durum)
 message.react('✅')
 } else if (args[1].toLowerCase() === "stext") {
-let data = await db.fetch(`stext`)
+let data = await db.get(`stext`)
 let durum = args.splice(2).join(" ")
 if(!durum) return message.reply({content:`${basarisiz} ${message.author}, Lütfen small text belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 if (data === durum) return message.reply(`${basarisiz} ${message.author}, Small text önceki ile aynı olamaz.`).then(x => setTimeout(() => {x.delete()}, 5000))
@@ -125,7 +126,7 @@ if (args[0].toLowerCase() === "sifirla") {
 
 if (args[1]) {
 const sayılar = ["limage","simage","stext","ltext","assets","name","state","appid","url"]
-if(!sayılar.some(word => message.content.includes(word))) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir ${await db.fetch("prefix") || ayarlar.prefix}durum sifirla <name/state/type/details/url/assets/appid/limage/ltext/simage/stext>`).then(x => setTimeout(() => {x.delete()}, 10000))
+if(!sayılar.some(word => message.content.includes(word))) return message.reply(`${basarisiz} ${message.author}, Dogru bi komut gir ${await db.get("prefix") || ayarlar.prefix}durum sifirla <name/state/type/details/url/assets/appid/limage/ltext/simage/stext>`).then(x => setTimeout(() => {x.delete()}, 10000))
   
 if (args[1].toLowerCase() === "details") {
 await db.delete(`details`)
@@ -182,7 +183,7 @@ message.react('✅')
 message.reply(`${basari} ${message.author}, Tüm assets ler sıfırlandı.`).then(x => setTimeout(() => {x.delete()}, 5000));
 }
 } else {
-let data = await db.fetch(`durum`)
+let data = await db.get(`durum`)
 if (!data) return message.reply(`${basarisiz} ${message.author}, Durumunuz zaten sıfırlanmış.`).then(x => setTimeout(() => {x.delete()}, 5000));
 
 await db.delete(`durum`)
@@ -204,7 +205,7 @@ message.reply(`${basari} ${message.author}, Durumunuz sıfırlanıyor biraz bekl
 }
   
 if (args[0].toLowerCase() === "appid") {  
-let data = await db.fetch(`appid`)
+let data = await db.get(`appid`)
 let durum = args.splice(1).join(" ")
 if (isNaN(durum)) return message.reply({content:`${basarisiz} ${message.author}, Lütfen application id belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 if(!durum) return message.reply({content:`${basarisiz} ${message.author}, Lütfen application id belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
@@ -218,7 +219,7 @@ message.react('✅')
   
 if (args[0].toLowerCase() === "type") {  
 let sayılar = ["1","2","3","4"]
-let data = await db.fetch(`type`)
+let data = await db.get(`type`)
 let status = args[1]
 if(!status) return message.reply(`${basarisiz} ${message.author}, Lütfen durum şeklinizi belirtiniz.\n1 = Oynuyor\n2 = İzliyor\n3 = Dinliyor\n4 = Yayında`)
 if(!sayılar.some(word => message.content.includes(word))) return message.reply(`${basarisiz} ${message.author}, Lütfen aşağıdaki sayılardan belirtiniz.\n1 = Oynuyor\n2 = İzliyor\n3 = Dinliyor\n4 = Yayında`)
@@ -248,10 +249,10 @@ message.react('✅')
 }
   
 if (args[0].toLowerCase() === "ayarla") {
-  let data = await db.fetch(`type`) || "PLAYING"
+  let data = await db.get(`type`) || "PLAYING"
   
 if (data === "PLAYING" || data === "WATCHING" || data === "LISTENING") {
-  if (!await db.fetch(`durum`)) return message.reply({content:`${basarisiz} ${message.author}, Lütfen durum name belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
+  if (!await db.get(`durum`)) return message.reply({content:`${basarisiz} ${message.author}, Lütfen durum name belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 
 message.react('✅')   
 message.reply(`${basari} ${message.author}, Durumunuz ayarlanıyor lütfen bekleyin...`).then(msg => {
@@ -259,8 +260,8 @@ message.reply(`${basari} ${message.author}, Durumunuz ayarlanıyor lütfen bekle
     process.exit(0);
   })  
 } else if (data === "STREAMING") {
-  if (!await db.fetch(`durum`)) return message.reply({content:`${basarisiz} ${message.author}, Lütfen durum name belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
-  if (!await db.fetch(`durum`)) return message.reply({content:`${basarisiz} ${message.author}, Lütfen durum url belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
+  if (!await db.get(`durum`)) return message.reply({content:`${basarisiz} ${message.author}, Lütfen durum name belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
+  if (!await db.get(`durum`)) return message.reply({content:`${basarisiz} ${message.author}, Lütfen durum url belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 
 message.react('✅')   
 message.reply(`${basari} ${message.author}, Durumunuz ayarlanıyor lütfen bekleyin...`).then(msg => {
@@ -272,7 +273,7 @@ message.reply(`${basari} ${message.author}, Durumunuz ayarlanıyor lütfen bekle
   
 if (args[0].toLowerCase() === "kapat") {
   
-let data = await db.fetch("durumonoff")
+let data = await db.get("durumonoff")
 if (!data) return message.reply(`${basarisiz} ${message.author}, Durumunuz zaten kapanmış.`).then(x => setTimeout(() => {x.delete()}, 5000));
 
 await db.delete("durumonoff")
@@ -285,7 +286,7 @@ message.reply(`${basari} ${message.author}, Durumunuz kapatılıyor lütfen bekl
   
 if (args[0].toLowerCase() === "aç") {
   
-let data = await db.fetch("durumonoff")
+let data = await db.get("durumonoff")
 if (data === "Açik") return message.reply(`${basarisiz} ${message.author}, Durumunuz zaten açık.`).then(x => setTimeout(() => {x.delete()}, 5000));
 
 await db.set("durumonoff", "Açik")

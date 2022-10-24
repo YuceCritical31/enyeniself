@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
   
 if (message.author.id === ayarlar.sahip) {
 let sayılar = ["1","2","3","4"]
-let data = await db.fetch(`status`)
+let data = await db.get(`status`)
 let status = args[0]
 if(!status) return message.reply(`${basarisiz} ${message.author}, Lütfen durumunuzu belirtiniz.\n1 = Çevrimiçi\n2 = Boşta\n3 = Rahatsız Etmeyin\n4 = Görünmez`).then(x => setTimeout(() => {x.delete()}, 10000))
 if(status > 4 || status < 1) return message.reply(`${basarisiz} ${message.author}, Lütfen aşağıdaki sayılardan belirtiniz.\n1 = Çevrimiçi\n2 = Boşta\n3 = Rahatsız Etmeyin\n4 = Görünmez`).then(x => setTimeout(() => {x.delete()}, 10000))

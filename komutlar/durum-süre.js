@@ -1,5 +1,6 @@
 const Discord = require("discord.js-selfbot-v13");
-const db = require("quick.db");
+const { QuickDB } = require('quick.db');
+const db = new QuickDB()
 const ayarlar = require("../ayarlar.json");
 let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji;
@@ -7,11 +8,11 @@ exports.run = async (client, message, args) => {
   
 if (message.author.id === ayarlar.sahip) {
 let sayılar = ["aç","ac","kapat"]
-let data = await db.fetch(`durum`)
-let data2 = await db.fetch(`durum_süresi`)
+let data = await db.get(`durum`)
+let data2 = await db.get(`durum_süresi`)
 let status = args[0]
-if(!status) return message.reply(`${basarisiz} ${message.author}, ${db.fetch(`prefix`) || ayarlar.prefix}dz Aç/Kapat şeklinde yazınız.`).then(x => setTimeout(() => {x.delete()}, 5000))
-if(!sayılar.some(word => message.content.includes(word))) return message.reply(`${basarisiz} ${message.author}, ${db.fetch(`prefix`) || ayarlar.prefix}dz Aç/Kapat şeklinde yazınız.`).then(x => x.delete({timeout: 5000}))
+if(!status) return message.reply(`${basarisiz} ${message.author}, ${db.get(`prefix`) || ayarlar.prefix}dz Aç/Kapat şeklinde yazınız.`).then(x => setTimeout(() => {x.delete()}, 5000))
+if(!sayılar.some(word => message.content.includes(word))) return message.reply(`${basarisiz} ${message.author}, ${db.get(`prefix`) || ayarlar.prefix}dz Aç/Kapat şeklinde yazınız.`).then(x => x.delete({timeout: 5000}))
 
 if (status === "aç" || status === "ac"){
 if (data2) return message.reply(`${basarisiz} ${message.author}, Durum zamanı zaten açık.`).then(x => setTimeout(() => {x.delete()}, 5000))

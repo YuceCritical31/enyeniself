@@ -10,7 +10,6 @@ const { QuickDB } = require('quick.db');
 const db = new QuickDB()
 require('./util/etkinlikLoader.js')(client);
 const ms = require('ms');
-const { Client, Util } = require('discord.js-selfbot-v13');
 const app = express()
 const http = require('http');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
@@ -21,7 +20,7 @@ app.get("/", (request, response) => {
   console.log(Date.now() + " Ping tamamdır.");
 });
 
-var prefix = db.fetch(`prefix`) || ayarlar.prefix
+var prefix = db.get(`prefix`) || ayarlar.prefix
 
 const log = message => {
     console.log(`${message}`);
@@ -101,17 +100,17 @@ client.unload = command => {
 }
 
 client.on('messageCreate', async message => {
-if (await db.fetch("çeviri")) {
+if (await db.get("çeviri")) {
   
 const { translate } = require("bing-translate-api")
   
   if (message.author.id !== client.user.id) return
   if (message.content.startsWith(prefix) || message.content.startsWith(ayarlar.basariliemoji) || message.content.startsWith(ayarlar.basarisizemoji)) return
   
-await translate(message.content, null, await db.fetch("çeviri"), true).then(x => message.edit({content:x.translation}))
+await translate(message.content, null, await db.get("çeviri"), true).then(x => message.edit({content:x.translation}))
 } else if (message.content === '.unuttum') {
 if (message.author.id !== ayarlar.sahip) return 
-message.reply({content:`Prefix: \`${await db.fetch(`prefix`) || ayarlar.prefix}\``})
+message.reply({content:`Prefix: \`${await db.get(`prefix`) || ayarlar.prefix}\``})
 }
 
 })
@@ -120,9 +119,9 @@ message.reply({content:`Prefix: \`${await db.fetch(`prefix`) || ayarlar.prefix}\
 client.login(process.env.token).catch(x => console.log(x))
 
 client.on('messageCreate', async message => {
-let afk = await db.fetch(`afk`)
-let sebep = await db.fetch(`afk_sebep`)
-let süre = await db.fetch(`afk_süre`)
+let afk = await db.get(`afk`)
+let sebep = await db.get(`afk_sebep`)
+let süre = await db.get(`afk_süre`)
   
 if (!afk) return
 if (afk === "Açık") {
@@ -130,7 +129,7 @@ if (message.author.bot === true) return
 if (message.author.id === client.user.id) return
 if (message.channel.type === "DM" && message.type !== "CALL") {
 
-let cooldown = await db.fetch(`spamcıdm_${message.author.id}`)
+let cooldown = await db.get(`spamcıdm_${message.author.id}`)
 
 if (cooldown === "spamcı oç") return
 if (!cooldown) {
@@ -146,7 +145,7 @@ if (!cooldown) {
 if (!message.mentions.users.first()) return
 if (message.mentions.users.first().id === client.user.id) {
 if (message.system === true) return
-let cooldown = await db.fetch(`spamcısu_${message.author.id}`)
+let cooldown = await db.get(`spamcısu_${message.author.id}`)
 
 if (cooldown === "spamcı oç") return
 if (!cooldown) {
@@ -161,7 +160,7 @@ if (message.channel.type !== "GROUP_DM") return
 if (message.channel.ownerId !== client.user.id) return
 if (message.system) return
   
-let banli = await db.fetch(`banli_${message.channel.id}_${message.author.id}`)
+let banli = await db.get(`banli_${message.channel.id}_${message.author.id}`)
 let uye = message.channel.recipients.get(message.author.id)
 if(!uye) return
 
@@ -176,7 +175,7 @@ client.off("channelRecipientAdd", async(grup, üye) => {
   if (grup.ownerId !== client.user.id) return
   
 
-  let banli = await db.fetch(`banli_${grup.id}_${üye.id}`)
+  let banli = await db.get(`banli_${grup.id}_${üye.id}`)
   
 if (!banli) return
 if (banli === "banlandin") {
@@ -186,8 +185,8 @@ grup.send({content:`<@${üye.id}>, adli kullanıcı banlı oldugu için atıldı
 
 client.on('messageDelete', async message => {
   
-  if (!await db.fetch("mesajlog")) return
-  if (await db.fetch("mesajlog") === "Aktif") {
+  if (!await db.get("mesajlog")) return
+  if (await db.get("mesajlog") === "Aktif") {
   if(!message.content) return
   if(!message.author.id) return
   if(message.author.bot) return;
@@ -196,7 +195,7 @@ client.on('messageDelete', async message => {
   if(message.channel.type === "DM") {
   await db.set(`snipe.mesajdm.${message.channel.id}`, message.content)
   await db.set(`snipe.iddm.${message.channel.id}`, message.author.id)
-  if(await db.fetch(`karaliste_${message.author.id}`) === "Aktif") return
+  if(await db.get(`karaliste_${message.author.id}`) === "Aktif") return
   message.channel.send({content:`**${message.author.username}#${message.author.discriminator}:** ${message.content}`})
 } else if (message.channel.type === "GUILD_TEXT") {
   await db.set(`snipe.mesaj.${message.guild.id}`, message.content)
@@ -204,15 +203,15 @@ client.on('messageDelete', async message => {
 } else if(message.channel.type === "GROUP_DM") {
   await db.set(`snipe.mesajgdm.${message.channel.id}`, message.content)
   await db.set(`snipe.idgdm.${message.channel.id}`, message.author.id)
-  if(await db.fetch(`karaliste_${message.author.id}`) === "Aktif") return
+  if(await db.get(`karaliste_${message.author.id}`) === "Aktif") return
   message.channel.send({content:`**${message.author.username}#${message.author.discriminator}:** ${message.content}`})
 }}
 })
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
   
-  if (!await db.fetch("mesajlog")) return
-  if (await db.fetch("mesajlog") === "Aktif") {
+  if (!await db.get("mesajlog")) return
+  if (await db.get("mesajlog") === "Aktif") {
   if(!newMessage.content) return
   if(!newMessage.author.id) return
   if(newMessage.author.bot) return;
@@ -220,16 +219,16 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
   if(oldMessage.content === newMessage.content) return
   
   if(newMessage.channel.type === "DM") {
-  if(await db.fetch(`karaliste_${newMessage.author.id}`) === "Aktif") return
+  if(await db.get(`karaliste_${newMessage.author.id}`) === "Aktif") return
   newMessage.channel.send({content:`**${newMessage.author.username}#${newMessage.author.discriminator}:** \`${oldMessage.content}\` --> \`${newMessage.content}\``})
 } else if(newMessage.channel.type === "GROUP_DM") {
-  if(await db.fetch(`karaliste_${newMessage.author.id}`) === "Aktif") return
+  if(await db.get(`karaliste_${newMessage.author.id}`) === "Aktif") return
   newMessage.channel.send({content:`**${newMessage.author.username}#${newMessage.author.discriminator}:** \`${oldMessage.content}\` --> \`${newMessage.content}\``})
 }}
 })
 
 client.on("messageCreate", async message => {
-if (message.channel.id !== db.fetch("bom-kanal")) return
+if (message.channel.id !== db.get("bom-kanal")) return
 if (message.author.id === client.user.id) return
 if(!isNaN(message.content)) {
 await db.set("bom-set", message.content)
@@ -237,16 +236,16 @@ if (message.content.endsWith("9") || message.content.endsWith("4")) return setTi
 if (message.content.endsWith("5"||"0")) return
 await db.add("bom-bot", message.content)
 await db.add("bom-bot", +1)
-setTimeout(async() => {message.channel.send({content:`${await db.fetch("bom-bot")}`}).then(() => {db.delete("bom-bot")})}, 1500)}
+setTimeout(async() => {message.channel.send({content:`${await db.get("bom-bot")}`}).then(() => {db.delete("bom-bot")})}, 1500)}
 
   
 if (message.content.toLowerCase().startsWith("bo")) {
 await db.delete("bom-reply")
-await db.add("bom-reply", db.fetch("bom-set"))
-if (await db.fetch("bom-set").endsWith("8"||"3")) await db.add("bom-reply", +3)
-if (await db.fetch("bom-set").endsWith("9"||"4")) await db.add("bom-reply", +2)
-if (await db.fetch("bom-set").endsWith("7"||"2")) await db.add("bom-reply", +4)
-setTimeout(async() => {message.channel.send({content:`${await db.fetch("bom-reply")}`})}, 1500)
+await db.add("bom-reply", db.get("bom-set"))
+if (await db.get("bom-set").endsWith("8"||"3")) await db.add("bom-reply", +3)
+if (await db.get("bom-set").endsWith("9"||"4")) await db.add("bom-reply", +2)
+if (await db.get("bom-set").endsWith("7"||"2")) await db.add("bom-reply", +4)
+setTimeout(async() => {message.channel.send({content:`${await db.get("bom-reply")}`})}, 1500)
 }
 
 })
@@ -257,7 +256,7 @@ client.on('messageCreate', async msg => {
 
 if (msg.channel.type === "GUILD_TEXT") {
 
-let data = await db.fetch(`sa-as_${msg.guild.id}`)
+let data = await db.get(`sa-as_${msg.guild.id}`)
 
 if(!data) return
 if (data == "Açık") {
@@ -273,7 +272,7 @@ if (reklam3.some(word => msg.content.toLowerCase().startsWith(word))) return msg
 if (reklam4.some(word => msg.content.toLowerCase().startsWith(word))) return msg.reply('Senin için üzüldüm ne oldu?')
 }} else if (msg.channel.type === "GROUP_DM") {
 
-let data = await db.fetch(`sa-as_${msg.channel.id}`)
+let data = await db.get(`sa-as_${msg.channel.id}`)
 
 if(!data) return
 if (data == "Açık") {
@@ -292,13 +291,13 @@ if (reklam4.some(word => msg.content.toLowerCase().startsWith(word))) return msg
 
 client.on('messageCreate', async msg => {
   
-  let reklamkick = await db.fetch(`taklit`)
+  let reklamkick = await db.get(`taklit`)
   if (!reklamkick) return;
   if (reklamkick == "Açık") {
-  let prefix = await db.fetch(`prefix`) || ayarlar.prefix
+  let prefix = await db.get(`prefix`) || ayarlar.prefix
 const reklam = ["mal","salak","atahan","ben","my","göt","burak","allah","amk","oç","piç","orospu","sik","yuce","aziz","yarra","köpe","bok","kopek","çük","pipi","cük","aşk","ask","apla","abla","kral","kudur","bne","şerefsiz","serefsiz"]//,"send","drop","sell","cf","ws"]
 
-if (msg.author.id !== db.fetch(`kurban`)) return;
+if (msg.author.id !== db.get(`kurban`)) return;
 if (msg.author.id === client.user.id) return;
 if (msg.content.startsWith(ayarlar.basariliemoji)) return msg.channel.send(msg).then(x => setTimeout(() => {x.delete()}, 5000))
 if (msg.content.startsWith(ayarlar.basarisizemoji)) return msg.channel.send(msg).then(x => setTimeout(() => {x.delete()}, 5000))

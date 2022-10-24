@@ -1,5 +1,6 @@
 const Discord = require("discord.js-selfbot-v13");
-const db = require("quick.db");
+const { QuickDB } = require('quick.db');
+const db = new QuickDB()
 const ayarlar = require("../ayarlar.json");
 let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji;
@@ -8,7 +9,7 @@ exports.run = async (client, message, args) => {
 if (message.author.id === ayarlar.sahip) {
 
 let data
-let kufur = await db.fetch(`taklit`);
+let kufur = await db.get(`taklit`);
 let kanal2 = client.users.cache.get(args[0])
 let kanal = message.mentions.users.first()
 if(kanal) {data = kanal.id}
