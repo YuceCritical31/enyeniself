@@ -20,8 +20,6 @@ app.get("/", (request, response) => {
   console.log(Date.now() + " Ping tamamdır.");
 });
 
-var prefix = db.get(`prefix`) || ayarlar.prefix
-
 const log = message => {
     console.log(`${message}`);
 };
@@ -101,6 +99,8 @@ client.unload = command => {
 
 client.on('messageCreate', async message => {
 if (await db.get("çeviri")) {
+  
+  let prefix = await db.get(`prefix`) || ayarlar.prefix
   
 const { translate } = require("bing-translate-api")
   
