@@ -10,7 +10,8 @@ if (message.author.id === ayarlar.sahip) {
     const ctx = canvas.getContext("2d")
 
     const target = message.mentions.users.first()
-    const target2 = message.mentions.users.first(1)
+    const target2 = message.mentions.users.first()[1]
+    console.log(target2)
     if(!target || target.id === message.author.id) return message.reply(`${basarisiz} ${message.author}, Bir kullanıcı etiketlemelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
 
     const bg = await Canvas.loadImage("https://cdn.discordapp.com/attachments/716216765448978504/858442843197669376/PElrfiWeuvQ.png")
@@ -25,10 +26,10 @@ if (message.author.id === ayarlar.sahip) {
     const random = Math.floor(Math.random() * 99) + 1
 
     ctx.font = '30px Impact'
-    ctx.fillText(message.author.username, 140, 240, 300, 300)
+    ctx.fillText(message.author.username, 140, 260, 300, 300)
 
     ctx.font = '30px Impact'
-    ctx.fillText(target.username, 448, 240, 300, 300)
+    ctx.fillText(target.username, 448, 260, 300, 300)
 
 
     const heart = await Canvas.loadImage('https://cdn.discordapp.com/attachments/716216765448978504/858607217728159744/unknown.png')
@@ -38,7 +39,7 @@ if (message.author.id === ayarlar.sahip) {
         ctx.drawImage(heart, 275, 60, 150, 150)
 
         ctx.font = '35px Impact'
-        ctx.fillText(`${random}%`, 330, 150, 200, 200)
+        ctx.fillText(`${random}%`, 318, 150, 200, 200)
 
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({files:[attachment]})
@@ -47,7 +48,7 @@ if (message.author.id === ayarlar.sahip) {
         ctx.drawImage(broken, 275, 60, 150, 150)
       
         ctx.font = '35px Impact'
-        ctx.fillText(`${random}%`, 330, 150, 200, 200)
+        ctx.fillText(`${random}%`, 318, 150, 200, 200)
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'broken.png')
         return message.reply({files:[attachment]})
 
