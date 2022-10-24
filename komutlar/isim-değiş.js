@@ -17,7 +17,7 @@ try {
   message.reply({content:`${basari} ${message.author}, Başarıyla yeni ismin **${args.join(" ")}** olarak ayarlandı.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 message.react('✅')
 })
-} catch {message.reply({content:`${basarisiz} ${message.author}, İsmini çok hızlı değişiyosun 1 saat sonra tekrar dene.`}).then(x => setTimeout(() => {x.delete()}, 5000))
+} catch {message.reply({content:`${basarisiz} ${message.author}, Bu isim çok kullanılıyo veya ismini çok hızlı değişiyosun 1 saat sonra tekrar dene.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 }
 }
 };

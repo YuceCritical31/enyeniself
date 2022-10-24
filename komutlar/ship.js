@@ -20,25 +20,33 @@ if (message.author.id === ayarlar.sahip) {
 
     const TargetAvatar = await Canvas.loadImage(target.displayAvatarURL( { format: "png" } ))
     ctx.drawImage(TargetAvatar, 400, 25, 200, 200)
+  
+    const random = Math.floor(Math.random() * 99) + 1
 
     ctx.font = '30px Impact'
     ctx.fillText(message.author.username, 140, 240, 300, 300)
 
     ctx.font = '30px Impact'
-    ctx.fillText(target.username, 480, 240, 300, 300)
+    ctx.fillText(target.username, 448, 240, 300, 300)
 
 
     const heart = await Canvas.loadImage('https://cdn.discordapp.com/attachments/716216765448978504/858607217728159744/unknown.png')
     const broken = await Canvas.loadImage('https://cdn.discordapp.com/attachments/716216765448978504/858607537238179840/unknown.png')
-    const random = Math.floor(Math.random() * 99) + 1
 
     if(random >= 50) {
         ctx.drawImage(heart, 275, 60, 150, 150)
+
+        ctx.font = '40px Impact'
+        ctx.fillText(`${random}%`, 300, 100, 200, 200)
+
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
         return message.reply({content:`${message.author.username} + ${target.username} = ${random}%`, files:[attachment]})
 
     } else {
         ctx.drawImage(broken, 275, 60, 150, 150)
+      
+        ctx.font = '40px Impact'
+        ctx.fillText(`${random}%`, 300, 240, 300, 300)
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'broken.png')
         return message.reply({content:`${message.author.username} + ${target.username} = ${random}%`, files:[attachment]})
 
