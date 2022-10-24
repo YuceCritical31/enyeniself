@@ -3,7 +3,6 @@ const { QuickDB } = require('quick.db');
 const db = new QuickDB()
 const ayarlar = require("../ayarlar.json")
 const { joinVoiceChannel, entersState, VoiceConnectionStatus } = require('@discordjs/voice');
-const figlet = require("figlet")
 const chalk = require("chalk")
 
 module.exports = async client => {
