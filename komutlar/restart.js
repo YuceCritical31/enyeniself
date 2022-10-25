@@ -5,13 +5,13 @@ const ayarlar = require("../ayarlar.json");
 let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji;
 
-module.exports.run = async (client, message, args) => {
+module.exports.run = async(client, message, args) => {
     if (message.author.id === ayarlar.sahip) {
     await message.delete()
       
-    message.channel.send(`${basari} ${message.author}, Bot yeniden başlatılıyor...`).then(msg => {
+    message.channel.send(`${basari} ${message.author}, Bot yeniden başlatılıyor...`).then(async(msg) => {
     console.log(`BOT: Yeniden Başlatılıyor.....`);
-    db.set(`restart_chid`, msg.channel.id)
+    await db.set(`restart_chid`, msg.channel.id)
     process.exit(0);
   })
     

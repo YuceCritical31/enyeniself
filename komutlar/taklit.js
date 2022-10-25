@@ -9,10 +9,11 @@ let basarisiz = ayarlar.basarisizemoji;
 exports.run = async (client, message, args) => {
 
 if (![client.user.id].includes(message.author.id)) return
+await message.delete()
   
   if (!args[0]) {
     
-return message.reply(`${basarisiz} ${message.author}, Doğru bir argüman gir Aç veya Kapat.`).then(x => setTimeout(() => {x.delete()}, 5000));
+return message.channel.send(`${basarisiz} ${message.author}, Doğru bir argüman gir Aç veya Kapat.`).then(x => setTimeout(() => {x.delete()}, 5000));
 
 
     return;
@@ -21,34 +22,26 @@ let kufur = await db.get(`taklit`);
 if (args[0] == "aç" || args[0] == "ac") {
 if (kufur) {
 
-return message.reply(`${basarisiz} ${message.author}, Görünüşe göre taklit sistemi zaten aktif!`).then(x => setTimeout(() => {x.delete()}, 5000));
+return message.channel.send(`${basarisiz} ${message.author}, Görünüşe göre taklit sistemi zaten aktif!`).then(x => setTimeout(() => {x.delete()}, 5000));
 
       return;
     } else {
-      db.set(`taklit`, "Açık");
+     await db.set(`taklit`, "Açık");
 
 
-return message.reply(`${basari} ${message.author}, Taklit sistemi başarıyla açıldı.`)//.then(msg => {
-    //console.log(`BOT: Yeniden Başlatılıyor.....`);
-   // process.exit(0);
- // })
-message.react('✅')
+return message.channel.send(`${basari} ${message.author}, Taklit sistemi başarıyla açıldı.`).then(x => setTimeout(() => {x.delete()}, 5000));
     }
   } else if (args[0] == "kapat") {
     if (!kufur) {
 
-return message.reply(`${basarisiz} ${message.author}, Görünüşe göre taklit sistemi zaten kapalı!`).then(x => setTimeout(() => {x.delete()}, 5000));
+return message.channel.send(`${basarisiz} ${message.author}, Görünüşe göre taklit sistemi zaten kapalı!`).then(x => setTimeout(() => {x.delete()}, 5000));
 
       return;
     }
-    db.delete(`taklit`);
+   await db.delete(`taklit`);
 
 
-return message.reply(`${basari} ${message.author}, Taklit sistemi başarıyla kapandı.`)//.then(msg => {
-    //console.log(`BOT: Yeniden Başlatılıyor.....`);
-    //process.exit(0);
- // })
-message.react('✅')
+return message.channel.send(`${basari} ${message.author}, Taklit sistemi başarıyla kapandı.`).then(x => setTimeout(() => {x.delete()}, 5000));
   }
 
 

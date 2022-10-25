@@ -110,7 +110,7 @@ const { translate } = require("bing-translate-api")
 await translate(message.content, null, await db.get("çeviri"), true).then(x => message.edit({content:x.translation}))
 } else if (message.content === '.unuttum') {
 if (message.author.id !== ayarlar.sahip) return 
-message.reply({content:`Prefix: \`${await db.get(`prefix`) || ayarlar.prefix}\``})
+message.channel.sendy({content:`Prefix: \`${await db.get(`prefix`) || ayarlar.prefix}\``}).then(x => setTimeout(() => x.delete(), 5000))
 }
 
 })
@@ -135,11 +135,11 @@ if (cooldown === "spamcı oç") return
 if (!cooldown) {
   message.reply({content:`${client.user}, <t:${süre}:R> **${sebep}** sebebinden AFK moduna girdi lütfen rahatsız etme.`}).then(x => setTimeout(() => {x.delete()}, 30000))
   await db.set(`spamcıdm_${message.author.id}`, "spamcı oç")
-  setTimeout(() => {db.delete(`spamcıdm_${message.channel.id}`)}, 1200000)
+  setTimeout(async() => {await db.delete(`spamcıdm_${message.channel.id}`)}, 1200000)
 }} else if (message.type === "CALL") {
     message.channel.send({content:`${client.user}, <t:${süre}:R> **${sebep}** sebebinden AFK moduna girdi lütfen rahatsız etme.`}).then(x => setTimeout(() => {x.delete()}, 30000))
   await db.set(`spamcıarama_${message.author.id}`, "spamcı oç")
-  setTimeout(() => {db.delete(`spamcıarama_${message.channel.id}`)}, 1200000)
+  setTimeout(async() => {await db.delete(`spamcıarama_${message.channel.id}`)}, 1200000)
 
 } else {
 if (!message.mentions.users.first()) return
@@ -151,7 +151,7 @@ if (cooldown === "spamcı oç") return
 if (!cooldown) {
   message.reply({content:`${client.user}, <t:${süre}:R> **${sebep}** sebebinden AFK moduna girdi lütfen rahatsız etme.`}).then(x => setTimeout(() => {x.delete()}, 30000))
   await db.set(`spamcısu_${message.author.id}`, "spamcı oç")
-  setTimeout(() => {db.delete(`spamcısu_${message.author.id}`)}, 1200000)
+  setTimeout(async() => {await db.delete(`spamcısu_${message.author.id}`)}, 1200000)
 }}}}
 })
 
@@ -228,7 +228,7 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 })
 
 client.on("messageCreate", async message => {
-if (message.channel.id !== db.get("bom-kanal")) return
+if (message.channel.id !== await db.get("bom-kanal")) return
 if (message.author.id === client.user.id) return
 if(!isNaN(message.content)) {
 await db.set("bom-set", message.content)
@@ -236,12 +236,12 @@ if (message.content.endsWith("9") || message.content.endsWith("4")) return setTi
 if (message.content.endsWith("5"||"0")) return
 await db.add("bom-bot", message.content)
 await db.add("bom-bot", +1)
-setTimeout(async() => {message.channel.send({content:`${await db.get("bom-bot")}`}).then(() => {db.delete("bom-bot")})}, 1500)}
+setTimeout(async() => {message.channel.send({content:`${await db.get("bom-bot")}`}).then(async() => {await db.delete("bom-bot")})}, 1500)}
 
   
 if (message.content.toLowerCase().startsWith("bo")) {
 await db.delete("bom-reply")
-await db.add("bom-reply", db.get("bom-set"))
+await db.add("bom-reply", await db.get("bom-set"))
 if (await db.get("bom-set").endsWith("8"||"3")) await db.add("bom-reply", +3)
 if (await db.get("bom-set").endsWith("9"||"4")) await db.add("bom-reply", +2)
 if (await db.get("bom-set").endsWith("7"||"2")) await db.add("bom-reply", +4)
@@ -297,7 +297,7 @@ client.on('messageCreate', async msg => {
   let prefix = await db.get(`prefix`) || ayarlar.prefix
 const reklam = ["mal","salak","atahan","ben","my","göt","burak","allah","amk","oç","piç","orospu","sik","yuce","aziz","yarra","köpe","bok","kopek","çük","pipi","cük","aşk","ask","apla","abla","kral","kudur","bne","şerefsiz","serefsiz"]//,"send","drop","sell","cf","ws"]
 
-if (msg.author.id !== db.get(`kurban`)) return;
+if (msg.author.id !== await db.get(`kurban`)) return;
 if (msg.author.id === client.user.id) return;
 if (msg.content.startsWith(ayarlar.basariliemoji)) return msg.channel.send(msg).then(x => setTimeout(() => {x.delete()}, 5000))
 if (msg.content.startsWith(ayarlar.basarisizemoji)) return msg.channel.send(msg).then(x => setTimeout(() => {x.delete()}, 5000))
