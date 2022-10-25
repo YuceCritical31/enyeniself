@@ -12,9 +12,14 @@ if (message.author.id === ayarlar.sahip) {
 	
 await message.edit(`> Para Çeviriliyor...`).then(x => {
 setTimeout(() => {
-  message.edit("> Yazı...").then(x => setTimeout(() => {
-    x.edit("> Tura...")}, 1500))
-}, 1500)
+  message.edit("> Yazı...").then(x => {setTimeout(() => {
+    x.edit("> Tura...").then(() => {
+setTimeout(() => {message.edit(`> Yazı...`).then(() => {
+setTimeout(() => {message.edit(`> Para \`${yt}\` çıktı!`)}, 1000)
+    })}, 1000)
+    })
+  }, 1000)})
+}, 1000)
 })
 }};
 
