@@ -8,16 +8,15 @@ exports.run = async (client, message, args) => {
   
 if (message.author.id === ayarlar.sahip) {
 
-if (!client.password & !process.env.password) return message.reply({content:`${basarisiz} ${message.author}, Lütfen projeye girip şifrenizi belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
-if (!args.join(" ")) return message.reply({content:`${basarisiz} ${message.author}, Yanlış kullanım doğrusu -> **${await db.get("prefix") || ayarlar.prefix}isim <isim>** şeklinde yazınız.`}).then(x => setTimeout(() => {x.delete()}, 5000))
-if (args.join(" ") === client.user.username) return message.reply({content:`${basarisiz} ${message.author}, Belirtilen isim önceki ile aynı olamaz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
+if (!client.password & !process.env.password) return message.channel.send({content:`${basarisiz} ${message.author}, Lütfen projeye girip şifrenizi belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
+if (!args.join(" ")) return message.channel.send({content:`${basarisiz} ${message.author}, Yanlış kullanım doğrusu -> **${await db.get("prefix") || ayarlar.prefix}isim <isim>** şeklinde yazınız.`}).then(x => setTimeout(() => {x.delete()}, 5000))
+if (args.join(" ") === client.user.username) return message.channel.send({content:`${basarisiz} ${message.author}, Belirtilen isim önceki ile aynı olamaz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
   
 try {
  await client.user.setUsername(args.join(" "), client.password || process.env.password).then(() => {
-  message.reply({content:`${basari} ${message.author}, Başarıyla yeni ismin **${args.join(" ")}** olarak ayarlandı.`}).then(x => setTimeout(() => {x.delete()}, 5000))
-message.react('✅')
+  message.channel.send({content:`${basari} ${message.author}, Başarıyla yeni ismin **${args.join(" ")}** olarak ayarlandı.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 })
-} catch {message.reply({content:`${basarisiz} ${message.author}, Bu isim çok kullanılıyo veya ismini çok hızlı değişiyosun 1 saat sonra tekrar dene.`}).then(x => setTimeout(() => {x.delete()}, 5000))
+} catch {message.channel.send({content:`${basarisiz} ${message.author}, Bu isim çok kullanılıyo veya ismini çok hızlı değişiyosun 1 saat sonra tekrar dene.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 }
 }
 };

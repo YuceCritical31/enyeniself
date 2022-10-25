@@ -7,10 +7,8 @@ let basarisiz = ayarlar.basarisizemoji;
 module.exports = async message => {
 
   let client = message.client
-
   
   let prefix = await db.get(`prefix`) || ayarlar.prefix
-  if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
   let command = message.content.split(" ")[0].slice(prefix.length);
   let params = message.content.split(" ").slice(1);
@@ -23,7 +21,7 @@ module.exports = async message => {
   if (cmd) {
     //if(cmd.conf.enabled === false) return message.channel.send("⛔ Kullandığın komut **Bakıma Alınmış** veya **Kullanıma Kapatılmıştır!**")
     cmd.run(client, message, params);
-    if (message.author.id === ayarlar.sahip) {
+    if (message.author.id === client.user.id) {
     console.log(chalk.cyan("[KOMUT]") + ` ${cmd.help.name}`)}
   }
 };

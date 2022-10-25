@@ -5,6 +5,7 @@ const db = new QuickDB()
 
 exports.run = async (client, message, args)=> {
 if(message.author.id === ayarlar.sahip) {
+await message.delete()
 //Atahan Tarafından Yapılmıştır
 let basarisiz = ayarlar.basarisizemoji;
 let basari = ayarlar.basariliemoji;
@@ -12,34 +13,31 @@ let linkler = [".webp",".png",".jpeg",".gif",".jpg"]
 let Atahan = message.mentions.users.first() || client.users.cache.get(args[0])
   
 try{
-if (client.user.nitroType !== "NITRO_BOOST") return message.reply(`${basarisiz} ${message.author}, Bu komut için \`NITRO BOOST\` a ihtiyacın var.`).then(x => setTimeout(() => {x.delete()}, 5000))
+if (client.user.nitroType !== "NITRO_BOOST") return message.channel.send(`${basarisiz} ${message.author}, Bu komut için \`NITRO BOOST\` a ihtiyacın var.`).then(x => setTimeout(() => {x.delete()}, 5000))
 if (message.attachments.size === 1 && !args[0]) {
 message.attachments.forEach(x => {
-if (!x.url.endsWith(".jpg") & !x.url.endsWith(".gif") & !x.url.endsWith(".png") & !x.url.endsWith(".jpeg") & !x.url.endsWith(".webp")) return message.reply(`${basarisiz} ${message.author}, Bir görsel atmalısın.`).then(x => setTimeout(() => {x.delete()}, 5000))
+if (!x.url.endsWith(".jpg") & !x.url.endsWith(".gif") & !x.url.endsWith(".png") & !x.url.endsWith(".jpeg") & !x.url.endsWith(".webp")) return message.channel.send(`${basarisiz} ${message.author}, Bir görsel atmalısın.`).then(x => setTimeout(() => {x.delete()}, 5000))
 client.user.setBanner(x.url)
-message.reply({content:`${basari} ${message.author}, Başarıyla banner fotoğrafını aşağıdaki görsel olarak yaptım.`, files:[x.url]})
-message.react('✅')
+message.channel.send({content:`${basari} ${message.author}, Başarıyla banner fotoğrafını aşağıdaki görsel olarak yaptım.`, files:[x.url]})
 })
 }else if (!args[0] && message.attachments.size > 1) {
-message.reply(`${basarisiz} ${message.author}, En fazla 1 tane görsel belirtmelisin!`).then(x => setTimeout(() => {x.delete()}, 5000))
+message.channel.send(`${basarisiz} ${message.author}, En fazla 1 tane görsel belirtmelisin!`).then(x => setTimeout(() => {x.delete()}, 5000))
 }
   
-if (message.attachments.size === 0 && !args[0]) return message.reply(`${basarisiz} ${message.author}, Bir görsel linki belirtmelisin.`).then(x => setTimeout(() => {x.delete()}, 5000))
+if (message.attachments.size === 0 && !args[0]) return message.channel.send(`${basarisiz} ${message.author}, Bir görsel linki belirtmelisin.`).then(x => setTimeout(() => {x.delete()}, 5000))
 
 if (Atahan) { 
-if (!args[0]) return message.reply(`${basarisiz} ${message.author}, Bir link veya kullanıcı belirtmelisin.`).then(x => setTimeout(() => {x.delete()}, 5000))
-if (Atahan.id === client.user.id) return message.reply(`${basarisiz} ${message.author}, Bu komutu sadece diğer üyeler üzerinde kullanabilirsin.`).then(x => setTimeout(() => {x.delete()}, 5000))
+if (!args[0]) return message.channel.send(`${basarisiz} ${message.author}, Bir link veya kullanıcı belirtmelisin.`).then(x => setTimeout(() => {x.delete()}, 5000))
+if (Atahan.id === client.user.id) return message.channel.send(`${basarisiz} ${message.author}, Bu komutu sadece diğer üyeler üzerinde kullanabilirsin.`).then(x => setTimeout(() => {x.delete()}, 5000))
 await client.users.fetch(Atahan.id, { force: true })
-if (!Atahan.bannerURL()) return message.reply({content:`${basarisiz} ${message.author}, Kullanıcının banneri yok!`}).then(x => setTimeout(() => {x.delete()}, 5000))
+if (!Atahan.bannerURL()) return message.channel.send({content:`${basarisiz} ${message.author}, Kullanıcının banneri yok!`}).then(x => setTimeout(() => {x.delete()}, 5000))
 await client.user.setBanner(Atahan.bannerURL({dynamic: true, size: 1024}))
-message.reply({content:`${basari} ${message.author}, Başarıyla ${Atahan} adlı kullanıcının banner fotoğrafını kopyaladım.`, files:[Atahan.bannerURL({dynamic: true, size: 1024})]})
-message.react('✅')
+message.channel.send({content:`${basari} ${message.author}, Başarıyla ${Atahan} adlı kullanıcının banner fotoğrafını kopyaladım.`, files:[Atahan.bannerURL({dynamic: true, size: 1024})]})
 }else if (message.attachments.size === 0 && args[0]) {
 await client.user.setBanner(args[0])
-message.reply({content:`${basari} ${message.author}, Başarıyla banner fotoğrafını aşağıdaki görsel olarak yaptım.`, files:[args[0]]})
-message.react('✅')
+message.channel.send({content:`${basari} ${message.author}, Başarıyla banner fotoğrafını aşağıdaki görsel olarak yaptım.`, files:[args[0]]})
 }}catch{
-  message.reply(`${basarisiz} ${message.author}, Bannerini çok hızlı değişiyorsun veya yanlış kullanıcı/link/görsel giriyosun!`).then(x => setTimeout(() => {x.delete()}, 5000))
+  message.channel.send(`${basarisiz} ${message.author}, Bannerini çok hızlı değişiyorsun veya yanlış kullanıcı/link/görsel giriyosun!`).then(x => setTimeout(() => {x.delete()}, 5000))
 }
 
 }}

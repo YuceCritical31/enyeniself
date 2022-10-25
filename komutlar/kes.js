@@ -17,7 +17,6 @@ let member = message.mentions.members.first() || client.users.cache.get(args[0])
 if(!member) return message.reply(`${basarisiz} ${message.author}, Ses bağlantısı kesilcek üyeyi belirtmelisin!`).then(x => setTimeout(() => {x.delete()}, 5000));
 
 member.voice.setChannel(null)
-message.react('✅')
 }}
 exports.conf = { 
 enabled: true, 

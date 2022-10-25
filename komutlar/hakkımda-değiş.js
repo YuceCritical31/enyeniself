@@ -7,15 +7,15 @@ let basarisiz = ayarlar.basarisizemoji;
 exports.run = async (client, message, args) => {
   
 if (message.author.id === ayarlar.sahip) {
+await message.delete()
 
-if (!args.join(" ")) return message.reply({content:`${basarisiz} ${message.author}, Yanlış kullanım doğrusu -> **${await db.get("prefix") || ayarlar.prefix}hakkımda <hakkımda>** şeklinde yazınız.`}).then(x => setTimeout(() => {x.delete()}, 5000))
+if (!args.join(" ")) return message.channel.send({content:`${basarisiz} ${message.author}, Yanlış kullanım doğrusu -> **${await db.get("prefix") || ayarlar.prefix}hakkımda <hakkımda>** şeklinde yazınız.`}).then(x => setTimeout(() => {x.delete()}, 5000))
   
 try {
  await client.user.setAboutMe(args.join(" ")).then(() => {
-  message.reply({content:`${basari} ${message.author}, Başarıyla hakkımda kısmın **${args.join(" ")}** olarak ayarlandı.`}).then(x => setTimeout(() => {x.delete()}, 5000))
-message.react('✅')
+  message.channel.send({content:`${basari} ${message.author}, Başarıyla hakkımda kısmın **${args.join(" ")}** olarak ayarlandı.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 })
-} catch {message.reply({content:`${basarisiz} ${message.author}, Bir hata oluştu.`}).then(x => setTimeout(() => {x.delete()}, 5000))
+} catch {message.channel.send({content:`${basarisiz} ${message.author}, Bir hata oluştu.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 }
 }
 };

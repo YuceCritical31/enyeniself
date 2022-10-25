@@ -4,6 +4,7 @@ const moment = require("moment")
 
 exports.run = async (client, message, args)=> {
 if(message.author.id === ayarlar.sahip) {
+await message.delete()
 //Atahan Tarafından Yapılmıştır
 let basarisiz = ayarlar.basarisizemoji;
 let basari = ayarlar.basariliemoji;
@@ -46,8 +47,7 @@ Oluşturulduğu Tarih: ${moment(user.createdAt).format("DD/MM/YYYY")}
 .setColor("BLUE")
 
   
-message.reply({embeds:[embed]})
-message.react('✅')
+message.channel.send({embeds:[embed]})
 }
 
 }catch{ 
@@ -75,10 +75,9 @@ Sunucu Sahibi: ${client.users.cache.get(sunucu.ownerId).tag} (${sunucu.ownerId})
 .setColor("BLUE")
 
   
-message.reply({embeds:[embed]})
-message.react('✅')
+message.channel.send({embeds:[embed]})
 } else
-  message.reply({content:`${basarisiz} ${message.author}, Hatalı kullanıcı veya ID girdiniz!`}).then(x => setTimeout(() => {x.delete()}, 5000))
+  message.channel.send({content:`${basarisiz} ${message.author}, Hatalı kullanıcı veya ID girdiniz!`}).then(x => setTimeout(() => {x.delete()}, 5000))
   return;
 }
 

@@ -6,6 +6,7 @@ let basarisiz = ayarlar.basarisizemoji
 exports.run = async(client, message, args) => {
   
 if (message.author.id === ayarlar.sahip) {
+await message.delete()
   
 let kullanici = message.mentions.users.first()
 if (!kullanici) {kullanici = message.author}
@@ -29,7 +30,7 @@ if (iq > 90 && iq < 135) {
     }
   }
   
-message.reply(`> \`\`\`ini\n> ${kullanici.username} adlı kişinin IQ değeri [${iq}] ${smart_text}\`\`\``)
+message.channel.send(`> \`\`\`ini\n> ${kullanici.username} adlı kişinin IQ değeri [${iq}] ${smart_text}\`\`\``)
 }};
 
 exports.conf = {

@@ -6,7 +6,7 @@ let basarili = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji
 exports.run = async (client, message, args) => {
   
-  if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
   await message.delete()
   if (db.get(`afk`) === "Açık") return message.channel.send(`${basarisiz} ${message.author}, Görünüşe göre afk modu zaten açık.`).then(x => setTimeout(() => {x.delete()}, 5000));
 let sebep = args.slice(0).join(' ');
@@ -16,7 +16,7 @@ message.channel.send(`${basarili} ${message.author}, Başarıyla \`${sebep}\` se
 await db.set(`afk`, "Açık")
 await db.set(`afk_sebep`, sebep)
 await db.set(`afk_süre`, Math.floor(Date.now() / 1000))
-}};
+};
 
 exports.conf = {
   enabled: true,

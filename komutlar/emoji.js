@@ -3,8 +3,6 @@ const ayarlar = require("../ayarlar.json");
 let basarili = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji
 exports.run = async(client, message, args) => {
-  
-if (message.author.id === ayarlar.sahip) {
 
 try {
   let emojiy = args[0].toLowerCase()
@@ -13,10 +11,10 @@ try {
   if (!emoji) return message.reply(`${basarisiz} ${message.author}, Emojiyi bulamadim.`).then(x => setTimeout(() => {x.delete()}, 5000))
   
 message.edit({content:emoji + "?size=48"})
-} catch {message.reply(`${basarisiz} ${message.author}, Emojiyi bulamadim.`).then(x => setTimeout(() => {x.delete()}, 5000)) 
+} catch {await message.delete(); message.channel.send(`${basarisiz} ${message.author}, Emojiyi bulamadim.`).then(x => setTimeout(() => {x.delete()}, 5000)) 
 }
 
-}};
+};
 
 exports.conf = {
   enabled: true,

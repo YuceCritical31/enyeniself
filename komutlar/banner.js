@@ -3,6 +3,7 @@ const ayarlar = require('../ayarlar.json');
 
 exports.run = async (client, message, args)=> {
 if(message.author.id === ayarlar.sahip) {
+await message.delete()
 //Atahan Tarafından Yapılmıştır
 let basarisiz = ayarlar.basarisizemoji;
 let basari = ayarlar.basariliemoji;
@@ -22,22 +23,20 @@ await client.users.fetch(userid, { force: true })
 let user = await client.users.fetch(userid);
 
 let avatar = user.bannerURL({dynamic: true, size: 1024})
-if (!avatar) return message.reply({content:`${basarisiz} ${message.author}, Kullanıcının banneri yok!`}).then(x => setTimeout(() => {x.delete()}, 5000))
+if (!avatar) return message.channel.send({content:`${basarisiz} ${message.author}, Kullanıcının banneri yok!`}).then(x => setTimeout(() => {x.delete()}, 5000))
 if(avatar.endsWith(".gif?size=1024")) {
 
 let embed = user.bannerURL({dynamic: true, size: 1024})
-message.reply({files: [embed]})
-message.react('✅')
+message.channel.send({files: [embed]})
 
 } else {
   
 let embed = user.bannerURL({size: 1024})
-message.reply({files: [embed]})
-message.react('✅')
+message.channel.send({files: [embed]})
 
 }
 }catch{
-  message.reply({content:`${basarisiz} ${message.author}, Hatalı kullanıcı veya ID girdiniz!`}).then(x => setTimeout(() => {x.delete()}, 5000))
+  message.channel.send({content:`${basarisiz} ${message.author}, Hatalı kullanıcı veya ID girdiniz!`}).then(x => setTimeout(() => {x.delete()}, 5000))
   return;
 }
 
