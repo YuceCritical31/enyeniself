@@ -7,13 +7,13 @@ let basarisiz = ayarlar.basarisizemoji
 exports.run = async (client, message, args) => {
   
   if (message.author.id === ayarlar.sahip) {
-  if (!db.get(`afk`)) return message.reply({content:`${basarisiz} ${message.author}, Görünüşe göre afk modu zaten kapalı.`}).then(x => setTimeout(() => {x.delete()}, 5000));
+  await message.delete()
+  if (!db.get(`afk`)) return message.channel.send({content:`${basarisiz} ${message.author}, Görünüşe göre afk modu zaten kapalı.`}).then(x => setTimeout(() => {x.delete()}, 5000));
   
-message.reply({content:`${basarili} ${message.author}, Başarıyla afk modu kapandı.`}).then(x => setTimeout(() => {x.delete()}, 5000));
+message.channel.send({content:`${basarili} ${message.author}, Başarıyla afk modu kapandı.`}).then(x => setTimeout(() => {x.delete()}, 5000));
 await db.delete(`afk`)
 await db.delete(`afk_sebep`)
 await db.delete(`afk_süre`)
-message.react('✅')
 }};
 
 exports.conf = {

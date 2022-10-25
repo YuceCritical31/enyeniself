@@ -14,7 +14,8 @@ if (message.author.id === ayarlar.sahip) {
   
 if (!dil) return message.reply(`${basarisiz} ${message.author}, Bir dil belirtin.`).then(x => setTimeout(() => {x.delete()}, 5000))
 
-try {  
+try {
+await message.delete()
 if (dil.toLowerCase() === "aç") {
   if (await db.get("çeviri")) return message.reply(`${basarisiz} ${message.author}, Çeviri sistemi zaten açık.`).then(x => setTimeout(() => {x.delete()}, 5000))
   if (!mesaj) return message.reply(`${basarisiz} ${message.author}, Bir dil belirtin.`).then(x => setTimeout(() => {x.delete()}, 5000))

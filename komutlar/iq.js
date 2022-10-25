@@ -29,7 +29,7 @@ if (iq > 90 && iq < 135) {
     }
   }
   
-message.reply(`> \`\`\`${kullanici.username} adlı kişinin IQ değeri **${iq}**. ${smart_text}\`\`\``)
+message.reply(`> \`\`\`ini\n> ${kullanici.username} adlı kişinin IQ değeri [${iq}] ${smart_text}\`\`\``)
 }};
 
 exports.conf = {
