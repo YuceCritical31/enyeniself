@@ -12,8 +12,6 @@ await message.delete()
 let kullanici = message.mentions.users.first() || client.users.cache.get(args[0])
 if (!kullanici) return message.channel.send(`${basarisiz} ${message.author}, Bir kullanıcı belirtmelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
 if (!args.slice(1).join(" ")) return message.channel.send(`${basarisiz} ${message.author}, Mesaj belirtmelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
-
-  await message.delete()
   
   let engel = client.relationships.cache.get(kullanici.id)
 
