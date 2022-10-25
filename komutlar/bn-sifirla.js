@@ -6,7 +6,7 @@ let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji;
 exports.run = async (client, message, args) => {
   
-if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
 await message.delete()
 
 let komutlar = ["sil","ayarla","sifirla"]
@@ -51,7 +51,7 @@ message.channel.send(`${basari} ${message.author}, Başarıyla profil bannerini 
 message.channel.send(`${basarisiz} ${message.author}, Bannerini çok hızlı değişiyosun veya ayarlanan link hatalı!`).then(x => setTimeout(() => {x.delete()}, 5000))
 }}
 
-}};
+}
 
 exports.conf = {
   enabled: true,

@@ -3,7 +3,7 @@ const ayarlar = require('../ayarlar.json');
 const moment = require("moment")
 
 exports.run = async (client, message, args)=> {
-if(message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
 await message.delete()
 //Atahan Tarafından Yapılmıştır
 let basarisiz = ayarlar.basarisizemoji;
@@ -81,7 +81,7 @@ message.channel.send({embeds:[embed]})
   return;
 }
 
-}}
+}
 
  exports.conf = {
   enabled: true,

@@ -6,7 +6,7 @@ let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji;
 exports.run = async (client, message, args) => {
   
-if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
 await message.delete()
   
   const sayılar = ["name","state","type","details","url","assets","appid","sifirla","ayarla","kapat","aç"]
@@ -273,7 +273,7 @@ message.channel.send(`${basari} ${message.author}, Durumunuz açılıyor lütfen
   })
 }
 
-}};
+}
 
 exports.conf = {
   enabled: true,

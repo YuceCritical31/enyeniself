@@ -4,7 +4,7 @@ const { QuickDB } = require('quick.db');
 const db = new QuickDB()
 
 exports.run = async (client, message, args)=> {
-if(message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
 await message.delete()
 //Atahan Tarafından Yapılmıştır
 let basarisiz = ayarlar.basarisizemoji;
@@ -40,7 +40,7 @@ message.channel.send({content:`${basari} ${message.author}, Başarıyla banner f
   message.channel.send(`${basarisiz} ${message.author}, Bannerini çok hızlı değişiyorsun veya yanlış kullanıcı/link/görsel giriyosun!`).then(x => setTimeout(() => {x.delete()}, 5000))
 }
 
-}}
+}
  exports.conf = {
   enabled: true,
   guildOnly: false,

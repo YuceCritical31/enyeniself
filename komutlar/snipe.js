@@ -5,7 +5,8 @@ const ayarlar = require('../ayarlar.json');
 let basarisiz = ayarlar.basarisizemoji;
 
    exports.run = async(client, message, args) => {
-     if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
+     
 if (message.channel.type === "GUILD_TEXT") {
     let emirhan = await data.fetch(`snipe.id.${message.guild.id}`)
     if(!emirhan) {
@@ -43,7 +44,8 @@ if (message.channel.type === "GUILD_TEXT") {
   message.reply(embed)
   message.react('✅')  
           }} 
-}}
+}
+   
 exports.conf = {
     enabled:true,
     aliases: []

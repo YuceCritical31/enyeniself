@@ -4,6 +4,8 @@ let basarili = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji
 exports.run = async(client, message, args) => {
 
+if (![client.user.id].includes(message.author.id)) return
+  
 try {
   let emojiy = args[0].toLowerCase()
   if (!emojiy) return message.reply(`${basarisiz} ${message.author}, Bir emoji belirt.`).then(x => setTimeout(() => {x.delete()}, 5000)) 

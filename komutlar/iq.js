@@ -5,7 +5,7 @@ let basarili = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji
 exports.run = async(client, message, args) => {
   
-if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
 await message.delete()
   
 let kullanici = message.mentions.users.first()
@@ -31,7 +31,7 @@ if (iq > 90 && iq < 135) {
   }
   
 message.channel.send(`> \`\`\`ini\n> ${kullanici.username} adlı kişinin IQ değeri [${iq}] ${smart_text}\`\`\``)
-}};
+}
 
 exports.conf = {
   enabled: true,

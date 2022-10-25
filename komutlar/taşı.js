@@ -7,7 +7,9 @@ let basarisiz = ayarlar.basarisizemoji;
 
 exports.run = async (client, message, args) => {
   
-if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
+await message.delete()
+  
 if (message.channel.type !== "GUILD_TEXT") return message.reply(`${basarisiz} ${message.author}, Burası bir sunucu kanalı degil.`).then(x => setTimeout(() => {x.delete()}, 5000))  
 if (!message.member.permissions.has("MOVE_MEMBERS")) return message.reply(`${basarisiz} ${message.author}, Kralım bu sunucuda \`ÜYELERİ TAŞI\` yetkiniz yok.`).then(x => setTimeout(() => {x.delete()}, 5000))
   
@@ -21,16 +23,14 @@ if (!message.member.permissions.has("MOVE_MEMBERS")) return message.reply(`${bas
 if (uye2) {
 if (!uye.voice.channel || !uye2.voice.channel || uye.voice.channelId == uye2.voice.channelId) return message.reply(`${basarisiz} ${message.author}, 2 kullanıcıdan birisi ses kanalında değil!`).then(x => setTimeout(() => {x.delete()}, 5000));
 uye.voice.setChannel(uye2.voice.channelId)
-message.react('✅')
 } 
 else  
 if (kanal) {
 uye.voice.setChannel(kanal.id)
-message.react('✅')
 }
   
   };
-};
+
 exports.conf = {
   enabled: true,
   guildOnly: true,

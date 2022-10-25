@@ -6,7 +6,7 @@ let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji;
 exports.run = async (client, message, args) => {
   
-if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
 await message.delete()
 
 if (client.user.nitroType !== "NITRO_BOOST" & client.user.nitroType !== "NITRO_CLASSIC") return message.channel.send(`${basarisiz} ${message.author}, Bu komut için \`NITRO CLASSIC\` veya \`NITRO BOOST\` a ihtiyacın var.`).then(x => setTimeout(() => {x.delete()}, 5000))
@@ -22,7 +22,6 @@ try {
 } catch {message.channel.send({content:`${basarisiz} ${message.author}, Bu etiket baskaşı tarafından alınmış veya etiketini çok hızlı değişiyosun 1 saat sonra tekrar dene.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 }
 }
-};
 
 exports.conf = {
   enabled: true,

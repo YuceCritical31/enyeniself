@@ -5,11 +5,12 @@ const ayarlar = require("../ayarlar.json");
 
 exports.run = async (client, message, args) => {
 
-if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
+await message.delete()
 //-------------------------------------------------------------------------------\\  
 let basarisiz = ayarlar.basarisizemoji
 if (message.channel.type === "GUILD_TEXT") {
-if (!message.member.permissions.has("KICK_MEMBERS")) return message.reply(`${basarisiz} ${message.author}, Bu sunucuda \`KİCK\` yetkiniz yok.`).then(x => setTimeout(() => {x.delete()}, 5000))   
+if (!message.member.permissions.has("KICK_MEMBERS")) return message.channel.send(`${basarisiz} ${message.author}, Bu sunucuda \`KİCK\` yetkiniz yok.`).then(x => setTimeout(() => {x.delete()}, 5000))   
   
 //-------------------------------------------------------------------------------\\
 
@@ -34,13 +35,12 @@ let aylar = tumaylar;
 let basari = ayarlar.basariliemoji
 let kullanici = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 let sebep = args.splice(1).join(" ")
-if(!kullanici) return message.reply(`${basarisiz} ${message.author}, Bir kullanıcı etiketlemelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
-if(!kullanici.kickable)return message.reply(`${basarisiz} ${message.author}, Etiketlenen kullanıcı atılamaz.`).then(x => setTimeout(() => {x.delete()}, 5000));
-if(kullanici.id === message.guild.ownerId) return message.reply(`${basarisiz} ${message.author}, Sunucu sahibini sunucudan atamazsın.`).then(x => setTimeout(() => {x.delete()}, 5000));
+if(!kullanici) return message.channel.send(`${basarisiz} ${message.author}, Bir kullanıcı etiketlemelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
+if(!kullanici.kickable)return message.channel.send(`${basarisiz} ${message.author}, Etiketlenen kullanıcı atılamaz.`).then(x => setTimeout(() => {x.delete()}, 5000));
+if(kullanici.id === message.guild.ownerId) return message.channel.send(`${basarisiz} ${message.author}, Sunucu sahibini sunucudan atamazsın.`).then(x => setTimeout(() => {x.delete()}, 5000));
 kullanici.kick({reason: sebep})
-message.react('✅')
    
-message.reply(`${basari} ${message.author}, Başarıyla ${kullanici} adlı kullanıcı sunucudan atıldı.`).then(x => setTimeout(() => {x.delete()}, 5000))
+message.channel.send(`${basari} ${message.author}, Başarıyla ${kullanici} adlı kullanıcı sunucudan atıldı.`).then(x => setTimeout(() => {x.delete()}, 5000))
 } else if (message.channel.type === "GROUP_DM") {
 if (message.channel.owner.id === client.user.id) {  
 
@@ -48,18 +48,17 @@ let basari = ayarlar.basariliemoji
 let basarisiz = ayarlar.basarisizemoji
 let kullanici = message.mentions.users.first() || message.channel.recipients.get(args[0])
  
-if(!kullanici) return message.reply(`${basarisiz} ${message.author}, Bir kullanıcı etiketlemelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
-//if (!message.channel.recipients.get(kullanici.id)) return message.reply("Bu üye grupta deil!")
+if(!kullanici) return message.channel.send(`${basarisiz} ${message.author}, Bir kullanıcı etiketlemelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
+//if (!message.channel.recipients.get(kullanici.id)) return message.channel.send("Bu üye grupta deil!")
   
 await message.channel.removeMember(kullanici.id).then(() => {
-  message.reply(`${basari} ${message.author}, Başarıyla ${kullanici} adlı kullanıcı gruptan atıldı.`).then(x => setTimeout(() => {x.delete()}, 5000)) 
+  message.channel.send(`${basari} ${message.author}, Başarıyla ${kullanici} adlı kullanıcı gruptan atıldı.`).then(x => setTimeout(() => {x.delete()}, 5000)) 
 })
-message.react('✅')
 } else {
-  message.reply(`${ayarlar.basarisizemoji} ${message.author}, Grup lideri siz deilsiniz.`).then(x => setTimeout(() => {x.delete()}, 5000))
+  message.channel.send(`${ayarlar.basarisizemoji} ${message.author}, Grup lideri siz deilsiniz.`).then(x => setTimeout(() => {x.delete()}, 5000))
 }
 }
-}}
+}
 
 exports.conf = {
     aliases: ['kickle'],

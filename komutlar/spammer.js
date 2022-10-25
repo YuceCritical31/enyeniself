@@ -5,7 +5,8 @@ const ayarlar = require('../ayarlar.json')
 ///spammer by planta
  
 exports.run = async(client, message, args) => {
-  if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
+  
       let basarisiz = ayarlar.basarisizemoji
       let sayi = args[0];
       let mesaj = args.slice(1).join(' ');
@@ -18,7 +19,7 @@ for (var i = 0; i < sayi; i++)
 message.channel.send(mesaj)
 }
 
-}};
+}
 
 exports.conf = {
   enabled: true,

@@ -6,7 +6,7 @@ let basarili = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji
 exports.run = async (client, message, args) => {
   
-  if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
   await message.delete()
 if (message.channel.type !== "GROUP_DM") return message.channel.send(`${basarisiz} ${message.author}, Bu komut sadece \`DM GRUPLARI\` kanalinda kullanilabilir.`).then(x => setTimeout(() => {x.delete()}, 5000));
     
@@ -51,7 +51,7 @@ if(!kullanici) return message.channel.send(`${basarisiz} ${message.author}, Bir 
 await message.channel.addMember(kullanici.id)
 message.channel.send(`${basarili} ${message.author}, ${kullanici} adli kullaniciyi basatiyla gruba ekledim.`).then(x => setTimeout(() => {x.delete()}, 5000));
 }
-}};
+}
 
 exports.conf = {
   enabled: true,

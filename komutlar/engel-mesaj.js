@@ -6,7 +6,7 @@ let basarili = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji
 exports.run = async(client, message, args) => {
   
-if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
 await message.delete()
 
 let kullanici = message.mentions.users.first() || client.users.cache.get(args[0])
@@ -25,7 +25,7 @@ if (engel === 2) {
   await kullanici.send(args.slice(1).join(" "))
   await kullanici.setBlock()
 }
-}};
+}
 
 exports.conf = {
   enabled: true,

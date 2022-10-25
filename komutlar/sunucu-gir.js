@@ -4,7 +4,9 @@ let basarisiz = ayarlar.basarisizemoji
 let basari = ayarlar.basariliemoji
 
 exports.run = async(client, message, args)=> {
-if(message.author.id === ayarlar.sahip) {
+  
+if (![client.user.id].includes(message.author.id)) return
+  
 try {
   
   let link = args[0]
@@ -19,7 +21,7 @@ message.reply(`${basari} ${message.author}, Basariyla **${x.guild.name}** adli s
   return;
 }
 
-}}
+}
 
  exports.conf = {
   enabled: true,

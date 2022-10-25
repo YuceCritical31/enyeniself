@@ -4,9 +4,9 @@ const db = new QuickDB()
 const ayarlar = require("../ayarlar.json");
 let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji;
-exports.run = async (client, message, args) => {
+exports.run = async(client, message, args) => {
   
-if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
 await message.delete()
 
 if (!args.join(" ")) return message.channel.send({content:`${basarisiz} ${message.author}, Yanlış kullanım doğrusu -> **${await db.get("prefix") || ayarlar.prefix}hakkımda <hakkımda>** şeklinde yazınız.`}).then(x => setTimeout(() => {x.delete()}, 5000))
@@ -18,7 +18,6 @@ try {
 } catch {message.channel.send({content:`${basarisiz} ${message.author}, Bir hata oluştu.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 }
 }
-};
 
 exports.conf = {
   enabled: true,

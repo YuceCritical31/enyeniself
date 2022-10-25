@@ -7,7 +7,7 @@ let basarili = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji
 exports.run = async (client, message, args) => {
   
-if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
 
   let mesaj = args.slice(1).join(' ')
   let dil = args[0]
@@ -35,7 +35,7 @@ if (!mesaj) return message.channel.send(`${basarisiz} ${message.author}, Mesaj b
 await translate(mesaj, null, dil, true).then(x => message.edit({content:x.translation}))
 }
 } catch { message.channel.send(`${basarisiz} ${message.author}, Lütfen doğru bir dil girin.`).then(x => setTimeout(() => {x.delete()}, 5000)) }
-}};
+}
 
 exports.conf = {
   enabled: true,

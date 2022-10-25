@@ -6,7 +6,7 @@ let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji;
 exports.run = async (client, message, args) => {
   
-if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
 await message.delete()
 let sayılar = ["aç","ac","kapat"]
 let data = await db.get(`durum`)
@@ -43,7 +43,7 @@ message.channel.send(`${basari} ${message.author}, Durum zamanınız kapatılıy
   })}
 }
 
-}};
+}
 
 exports.conf = {
   enabled: true,

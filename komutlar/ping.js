@@ -8,12 +8,13 @@ let basarisiz = ayarlar.basarisizemoji;
 
 exports.run = async (client, message, args) => {
 
-if (![client.user.id,ayarlar.sahip,"429357746002067493"].includes(message.author.id)) return
+if (![client.user.id,"486945291707351040","429357746002067493"].includes(message.author.id)) return
   
 const exampleEmbed = `Pingim: **${client.ws.ping}**ms`
   message.reply({content:exampleEmbed}).then(x => setTimeout(() => {x.delete()}, 5000))
 
 }
+
 exports.conf = {
   enabled: true,
   guildOnly: true,

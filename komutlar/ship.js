@@ -5,7 +5,9 @@ let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji
 exports.run = async(client, message, args) => {
   
-if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
+await message.delete()
+  
     const canvas = Canvas.createCanvas(600, 250)
     const ctx = canvas.getContext("2d")
 
@@ -15,7 +17,7 @@ if (message.author.id === ayarlar.sahip) {
     let target3
     if (target2) {target3 = target2} else {target3 = message.author}
     
-    if(!target || target.id === message.author.id) return message.reply(`${basarisiz} ${message.author}, Bir kullanıcı etiketlemelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
+    if(!target || target.id === message.author.id) return message.channel.send(`${basarisiz} ${message.author}, Bir kullanıcı etiketlemelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
 
     const bg = await Canvas.loadImage("https://cdn.discordapp.com/attachments/1033078714432503858/1034217917786632262/unknown.png")
     
@@ -32,7 +34,7 @@ if (message.author.id === ayarlar.sahip) {
 
     if(random < 10) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
-        return message.reply({content:`
+        return message.channel.send({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
 :small_red_triangle_down:${target3}
 :small_red_triangle:${target}
@@ -41,7 +43,7 @@ if (message.author.id === ayarlar.sahip) {
 
     } else if(random >= 10 && random < 20) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
-        return message.reply({content:`
+        return message.channel.send({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
 :small_red_triangle_down:${target3}
 :small_red_triangle:${target}
@@ -50,7 +52,7 @@ if (message.author.id === ayarlar.sahip) {
 
 } else if(random >= 20 && random < 30) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
-        return message.reply({content:`
+        return message.channel.send({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
 :small_red_triangle_down:${target3}
 :small_red_triangle:${target}
@@ -59,7 +61,7 @@ if (message.author.id === ayarlar.sahip) {
 
 } else if(random >= 30 && random < 40) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
-        return message.reply({content:`
+        return message.channel.send({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
 :small_red_triangle_down:${target3}
 :small_red_triangle:${target}
@@ -68,7 +70,7 @@ if (message.author.id === ayarlar.sahip) {
 
 } else if(random >= 40 && random < 50) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
-        return message.reply({content:`
+        return message.channel.send({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
 :small_red_triangle_down:${target3}
 :small_red_triangle:${target}
@@ -77,7 +79,7 @@ if (message.author.id === ayarlar.sahip) {
 
 } else if(random >= 50 && random < 60) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
-        return message.reply({content:`
+        return message.channel.send({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
 :small_red_triangle_down:${target3}
 :small_red_triangle:${target}
@@ -86,7 +88,7 @@ if (message.author.id === ayarlar.sahip) {
 
 } else if(random >= 60 && random < 70) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
-        return message.reply({content:`
+        return message.channel.send({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
 :small_red_triangle_down:${target3}
 :small_red_triangle:${target}
@@ -95,7 +97,7 @@ if (message.author.id === ayarlar.sahip) {
 
 } else if(random >= 70 && random < 80) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
-        return message.reply({content:`
+        return message.channel.send({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
 :small_red_triangle_down:${target3}
 :small_red_triangle:${target}
@@ -104,7 +106,7 @@ if (message.author.id === ayarlar.sahip) {
 
 } else if(random >= 80 && random < 90) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
-        return message.reply({content:`
+        return message.channel.send({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
 :small_red_triangle_down:${target3}
 :small_red_triangle:${target}
@@ -113,7 +115,7 @@ if (message.author.id === ayarlar.sahip) {
 
 } else if(random >= 90 && random < 99) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
-        return message.reply({content:`
+        return message.channel.send({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
 :small_red_triangle_down:${target3}
 :small_red_triangle:${target}
@@ -122,7 +124,7 @@ if (message.author.id === ayarlar.sahip) {
 
 } else if(random >= 99) {
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'love.png')
-        return message.reply({content:`
+        return message.channel.send({content:`
 :heartpulse: **EŞLEŞME** :heartpulse:
 :small_red_triangle_down:${target3}
 :small_red_triangle:${target}
@@ -132,7 +134,7 @@ if (message.author.id === ayarlar.sahip) {
 }
   
   
-}};
+}
 
 exports.conf = {
   enabled: true,

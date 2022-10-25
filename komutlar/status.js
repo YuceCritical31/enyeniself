@@ -6,7 +6,8 @@ let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji;
 exports.run = async (client, message, args) => {
   
-if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
+  
 let sayılar = ["1","2","3","4"]
 let data = await db.get(`status`)
 let status = args[0]
@@ -49,7 +50,7 @@ await client.settings.setCustomStatus()
   
 message.reply(`${basari} ${message.author}, Durumunuz \`${status}\` olarak ayarlandi.`).then(x => setTimeout(() => {x.delete()}, 5000))
 message.react('✅')
-}};
+}
 
 exports.conf = {
   enabled: true,

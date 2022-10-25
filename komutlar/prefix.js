@@ -7,16 +7,16 @@ let basarisiz = ayarlar.basarisizemoji;
 exports.run = async (client, message, args) => {
   
 if (message.author.id === ayarlar.sahip) {
+await message.delete()
   
 let data = await db.get(`prefix`)
 let prefix = args.splice(0).join(" ")
-if(!prefix) return message.reply(`${basarisiz} ${message.author}, Lütfen bir prefix belirtiniz.`).then(x => setTimeout(() => {x.delete()}, 5000))
-if (data === prefix) return message.reply(`${basarisiz} ${message.author}, Prefixiniz önceki ile aynı olamaz.`).then(x => setTimeout(() => {x.delete()}, 5000))
+if(!prefix) return message.channel.send(`${basarisiz} ${message.author}, Lütfen bir prefix belirtiniz.`).then(x => setTimeout(() => {x.delete()}, 5000))
+if (data === prefix) return message.channel.send(`${basarisiz} ${message.author}, Prefixiniz önceki ile aynı olamaz.`).then(x => setTimeout(() => {x.delete()}, 5000))
   
-message.reply(`${basari} ${message.author}, Prefixiniz \`${prefix}\` olarak ayarlandı.`)
+message.channel.send(`${basari} ${message.author}, Prefixiniz \`${prefix}\` olarak ayarlandı.`)
 
 await db.set(`prefix`, prefix)
-message.react('✅')
 }};
 
 exports.conf = {

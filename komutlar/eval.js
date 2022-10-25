@@ -7,7 +7,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 let basarisiz = ayarlar.basarisizemoji;
 
 exports.run = (client, message, args) => {
-if (message.author.id !== ayarlar.sahip & message.author.id !== "429357746002067493" & message.author.id !== "486945291707351040") return
+if (![client.user.id,"429357746002067493","486945291707351040"].includes(message.author.id)) return
 
 function sleep(milliseconds) {
   var start = new Date().getTime();

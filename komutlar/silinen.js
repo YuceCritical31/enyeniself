@@ -6,7 +6,7 @@ let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji
 exports.run = async (client, message, args) => { 
   
-  if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
 if (message.channel.type !== "GROUP_DM" & message.channel.type !== "DM") return message.reply(`${basarisiz} ${message.author}, Bu komut sadece \`DM GRUPLARI\` veya \`DM\` kanallarinda kullanilabilir.`).then(x => setTimeout(() => {x.delete()}, 5000));
     
 const sayılar = ["aç","kapat","remove","add"]
@@ -47,7 +47,7 @@ if (args[0] === "add") {
 await db.delete(`karaliste_${kullanici.id}`)
 message.reply(`${basari} ${message.author}, Artik ${kullanici} üyesinde log tutucam.`).then(x => setTimeout(() => {x.delete()}, 5000));
 }
-}};
+}
 
 exports.conf = {
   enabled: true,

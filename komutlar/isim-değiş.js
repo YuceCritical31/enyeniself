@@ -6,7 +6,8 @@ let basari = ayarlar.basariliemoji;
 let basarisiz = ayarlar.basarisizemoji;
 exports.run = async (client, message, args) => {
   
-if (message.author.id === ayarlar.sahip) {
+if (![client.user.id].includes(message.author.id)) return
+await message.delete()
 
 if (!client.password & !process.env.password) return message.channel.send({content:`${basarisiz} ${message.author}, Lütfen projeye girip şifrenizi belirtiniz.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 if (!args.join(" ")) return message.channel.send({content:`${basarisiz} ${message.author}, Yanlış kullanım doğrusu -> **${await db.get("prefix") || ayarlar.prefix}isim <isim>** şeklinde yazınız.`}).then(x => setTimeout(() => {x.delete()}, 5000))
@@ -19,7 +20,6 @@ try {
 } catch {message.channel.send({content:`${basarisiz} ${message.author}, Bu isim çok kullanılıyo veya ismini çok hızlı değişiyosun 1 saat sonra tekrar dene.`}).then(x => setTimeout(() => {x.delete()}, 5000))
 }
 }
-};
 
 exports.conf = {
   enabled: true,
