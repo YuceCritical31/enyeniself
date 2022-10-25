@@ -11,7 +11,7 @@ await message.delete()
 
 let komutlar = ["sil","ayarla","sifirla"]
 let linkler = [".webp",".png",".jpeg",".gif",".jpg"]
-if(!komutlar.some(word => message.content.includes(word))) return message.channel.send(`${basarisiz} ${message.author}, Yanlış kullanım doğru kullanım şekli: ${db.get(`prefix`) || ayarlar.prefix}profil-foto <sil/ayarla/sifirla>`).then(x => setTimeout(() => {x.delete()}, 5000))
+if(!komutlar.some(word => message.content.includes(word))) return message.channel.send(`${basarisiz} ${message.author}, Yanlış kullanım doğru kullanım şekli: ${await db.get(`prefix`) || ayarlar.prefix}profil-foto <sil/ayarla/sifirla>`).then(x => setTimeout(() => {x.delete()}, 5000))
   
 if (args[0] === "sil") {
 message.channel.send(`${basari} ${message.author}, Profil fotoğrafını sildim.`)  

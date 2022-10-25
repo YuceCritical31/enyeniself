@@ -1,6 +1,4 @@
 const Discord = require('discord.js-selfbot-v13');
-const { QuickDB } = require('quick.db');
-const data = new QuickDB()
 const ayarlar = require("../ayarlar.json");
 
 exports.run = async (client, message, args) => {

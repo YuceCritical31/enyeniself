@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
   
 if (![client.user.id].includes(message.author.id)) return
   await message.delete()
-  if (db.get(`afk`) === "Açık") return message.channel.send(`${basarisiz} ${message.author}, Görünüşe göre afk modu zaten açık.`).then(x => setTimeout(() => {x.delete()}, 5000));
+  if (await db.get(`afk`) === "Açık") return message.channel.send(`${basarisiz} ${message.author}, Görünüşe göre afk modu zaten açık.`).then(x => setTimeout(() => {x.delete()}, 5000));
 let sebep = args.slice(0).join(' ');
 if (!sebep) return message.channel.send(`${basarisiz} ${message.author}, Bir sebep belirtmelisin.`).then(x => setTimeout(() => {x.delete()}, 5000));
   
